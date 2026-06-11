@@ -49,18 +49,20 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
     </div>
 
     <div class="contenedor hero__inner">
-      <p class="kicker hero__kicker">Organización política de izquierda</p>
-      <h1 class="hero__titulo">
-        <span class="hero__sube">Crece</span><br />el poder<br />de la gente
-      </h1>
-      <p class="hero__manifiesto">
-        Somos <strong>La Creciente</strong>: estudiantes, trabajadoras y trabajadores,
-        feministas y pueblo organizado. Crecemos como el río que no pide permiso
-        <span class="hero__sep">—</span> gota a gota, hasta desbordar la injusticia.
-      </p>
-      <div class="hero__acciones">
-        <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá <Icon name="ph:hand-fist" /></a>
-        <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">Conócenos</a>
+      <div class="hero__contenido">
+        <p class="kicker hero__kicker">Organización política de izquierda</p>
+        <h1 class="hero__titulo">
+          <span class="hero__sube">Crece</span><br />el poder<br />de la gente
+        </h1>
+        <p class="hero__manifiesto">
+          Somos <strong>La Creciente</strong>: estudiantes, trabajadoras y trabajadores,
+          feministas y pueblo organizado. Crecemos como el río que no pide permiso
+          <span class="hero__sep">—</span> gota a gota, hasta desbordar la injusticia.
+        </p>
+        <div class="hero__acciones">
+          <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá <Icon name="ph:hand-fist" /></a>
+          <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">Conócenos</a>
+        </div>
       </div>
     </div>
   </section>
@@ -167,7 +169,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   }
   .hero__media {
     position: absolute;
-    inset: 0;
+    inset: 0 0 0 50%; /* mitad derecha de la pantalla */
     z-index: 0;
     background: var(--violeta);
   }
@@ -216,18 +218,17 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
       opacity: 1;
     }
   }
-  /* Degradado: violeta sólido a la izquierda (texto) → foto a la derecha */
+  /* Costura: el violeta se pega al borde izquierdo de la foto y la
+     consume solo un poco; el resto de la foto se ve limpio. */
   .hero__overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      95deg,
+      90deg,
       var(--violeta) 0%,
-      var(--violeta) 30%,
-      color-mix(in srgb, var(--violeta) 80%, transparent) 46%,
-      color-mix(in srgb, var(--violeta) 35%, transparent) 64%,
-      color-mix(in srgb, var(--violeta) 8%, transparent) 82%,
-      transparent 100%
+      color-mix(in srgb, var(--violeta) 72%, transparent) 8%,
+      color-mix(in srgb, var(--violeta) 22%, transparent) 17%,
+      transparent 26%
     );
   }
   .hero__olas {
@@ -245,12 +246,24 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   .hero__inner {
     position: relative;
     z-index: 3;
-    max-width: 640px;
+  }
+  /* El texto ocupa la mitad izquierda; el borde derecho del contenedor
+     coincide con el centro de la pantalla (donde empieza la foto). */
+  .hero__contenido {
+    max-width: 50%;
+    padding-right: clamp(1rem, 2.5vw, 2.5rem);
   }
   /* En móvil: foto a sangre completa con velo violeta para legibilidad */
   @media (max-width: 820px) {
     .hero {
       min-height: min(80vh, 600px);
+    }
+    .hero__media {
+      inset: 0;
+    }
+    .hero__contenido {
+      max-width: 100%;
+      padding-right: 0;
     }
     .hero__overlay {
       background: linear-gradient(
