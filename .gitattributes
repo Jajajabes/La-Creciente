@@ -1,0 +1,9 @@
+# Normaliza saltos de línea: en el repo siempre LF.
+* text=auto eol=lf
+
+# Binarios (no tocar)
+*.png binary
+*.jpg binary
+*.woff2 binary
+*.woff binary
+*.pdf binary

@@ -1,0 +1,321 @@
+/* ============================================================
+   LA CRECIENTE — Sistema de diseño
+   Estética: cartel / serigrafía militante.
+   Morado + negro sobre papel crema, grano riso, acentos
+   multicolor por frente (Frente Amplio).
+   ============================================================ */
+
+:root {
+  /* --- Marca --- */
+  --violeta: #340052; /* violeta de marca (oficial) */
+  --violeta-vivo: #7a2fb0; /* violeta brillante para realces */
+  --violeta-profundo: #21013a; /* aún más oscuro: secciones de fondo */
+  --tinta: #150a1f; /* negro con matiz violeta */
+  --papel: #f3ecdd; /* crema cálido (no blanco) */
+  --papel-2: #e7dcc4;
+  --papel-3: #d8caa9;
+
+  /* --- Acentos por frente (Frente Amplio) --- */
+  --amarillo: #f4b400; /* Juventud */
+  --rojo: #e63223; /* Trabajadores */
+  --magenta: #e5398b; /* Feminismos */
+  --verde: #1f9e5a; /* Territorial */
+  --cian: #14a6c9; /* Estudiantil / UNAL */
+
+  /* --- Semánticos --- */
+  --fondo: var(--papel);
+  --texto: var(--tinta);
+  --tenue: color-mix(in srgb, var(--tinta) 62%, var(--papel));
+  --borde: color-mix(in srgb, var(--tinta) 85%, transparent);
+  --acento: var(--violeta);
+
+  /* --- Tipografía --- */
+  /* Display de marca: Art Nouveau (auto-alojadas en /public/fonts).
+     Mientras no estén, cae a "Anybody". Ver src/styles/fuentes.css */
+  --display: "Art Nouveau Rough", "Art Nouveau", "Anybody", "Times New Roman", serif;
+  --titulo: "Art Nouveau", "Anybody", "Times New Roman", serif;
+  --texto-font: "Anybody", system-ui, sans-serif;
+  --serif: "Anybody", Georgia, serif;
+
+  /* --- Métrica --- */
+  --max: 1240px;
+  --gutter: clamp(1.2rem, 4vw, 3rem);
+  --radio: 2px;
+
+  /* --- Sombra dura (cartel) --- */
+  --sombra-dura: 6px 6px 0 var(--tinta);
+  --sombra-dura-sm: 4px 4px 0 var(--tinta);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: var(--texto-font);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  line-height: 1.6;
+  font-weight: 420;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Grano de serigrafía sobre todo el sitio ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* ---------- Tipografía ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  font-family: var(--display);
+}
+
+h3,
+h4 {
+  font-family: var(--titulo);
+}
+
+h1 {
+  font-size: clamp(3rem, 1.5rem + 9vw, 8.5rem);
+  letter-spacing: -0.005em;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 1.2rem + 4.5vw, 4.6rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.4rem);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+::selection {
+  background: var(--violeta);
+  color: var(--papel);
+}
+
+/* ---------- Layout ---------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.seccion {
+  padding-block: clamp(4rem, 8vw, 8rem);
+  position: relative;
+}
+
+/* ---------- Etiqueta de sección (kicker) ---------- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6ch;
+  font-family: var(--texto-font);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.kicker::before {
+  content: "";
+  width: 2.4ch;
+  height: 2px;
+  background: currentColor;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  --bg: var(--tinta);
+  --fg: var(--papel);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6ch;
+  padding: 0.85em 1.5em;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  background: var(--bg);
+  color: var(--fg);
+  border: 2px solid var(--tinta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-dura-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--tinta);
+}
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--tinta);
+}
+.btn--violeta {
+  --bg: var(--violeta);
+  --fg: var(--papel);
+}
+.btn--amarillo {
+  --bg: var(--amarillo);
+  --fg: var(--tinta);
+}
+.btn--fantasma {
+  --bg: transparent;
+  --fg: var(--tinta);
+  box-shadow: none;
+}
+.btn--fantasma:hover {
+  background: var(--tinta);
+  color: var(--papel);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--sombra-dura-sm);
+}
+
+/* ---------- Utilidades ---------- */
+.marca-resaltada {
+  background: var(--amarillo);
+  padding: 0 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Prosa (contenido de artículos Markdown) ---------- */
+.prosa {
+  font-size: clamp(1.08rem, 1rem + 0.4vw, 1.22rem);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+.prosa > * + * {
+  margin-top: 1.2em;
+}
+.prosa h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  color: var(--violeta);
+  margin-top: 2em;
+  line-height: 1.05;
+}
+.prosa h3 {
+  font-size: clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
+  color: var(--violeta);
+  margin-top: 1.6em;
+}
+.prosa a {
+  color: var(--violeta);
+  text-decoration-color: var(--amarillo);
+}
+.prosa strong {
+  font-weight: 700;
+}
+.prosa ul,
+.prosa ol {
+  padding-left: 1.4em;
+}
+.prosa li + li {
+  margin-top: 0.5em;
+}
+.prosa li::marker {
+  color: var(--violeta-vivo);
+}
+.prosa blockquote {
+  border-left: 6px solid var(--amarillo);
+  background: var(--papel-2);
+  padding: 1rem 1.4rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15em;
+}
+.prosa blockquote p {
+  margin: 0;
+}
+.prosa hr {
+  border: none;
+  border-top: 3px solid var(--papel-3);
+}
+.prosa img {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid var(--tinta);
+  border-radius: var(--radio);
+}
+
+/* Aparición al hacer scroll (progresivo, accesible) */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}

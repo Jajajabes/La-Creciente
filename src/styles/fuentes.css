@@ -1,0 +1,38 @@
+/* ============================================================
+   FUENTES DE MARCA — La Creciente
+   ------------------------------------------------------------
+   Las fuentes Art Nouveau (ultra rough y letterpress) NO están
+   en Google Fonts. Para usarlas hay que auto-alojarlas:
+
+   1) Conseguí los archivos en formato .woff2 (y opcional .woff).
+      Si solo tenés .otf/.ttf, convertilos en
+      https://transfonter.org/  (gratis).
+   2) Copialos a:  public/fonts/
+      con estos nombres exactos (o cambiá las rutas de abajo):
+        - art-nouveau-ultra-rough.woff2
+        - art-nouveau-letterpress.woff2
+   3) Listo: el sitio las tomará automáticamente.
+
+   Mientras no estén, el sitio usa "Anybody" como reemplazo
+   para que se vea bien igual.
+   ============================================================ */
+
+@font-face {
+  font-family: "Art Nouveau Rough";
+  src:
+    url("/fonts/art-nouveau-ultra-rough.woff2") format("woff2"),
+    url("/fonts/art-nouveau-ultra-rough.woff") format("woff");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Art Nouveau";
+  src:
+    url("/fonts/art-nouveau-letterpress.woff2") format("woff2"),
+    url("/fonts/art-nouveau-letterpress.woff") format("woff");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}

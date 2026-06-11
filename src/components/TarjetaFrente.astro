@@ -1,0 +1,74 @@
+---
+import type { Frente } from "../data/sitio";
+interface Props {
+  frente: Frente;
+  detallado?: boolean;
+}
+const { frente, detallado = false } = Astro.props;
+---
+
+<article class="tf" style={`--c:${frente.color}`}>
+  <div class="tf__num" aria-hidden="true"></div>
+  <h3 class="tf__nombre">{frente.nombre}</h3>
+  <p class="tf__texto">{detallado ? frente.descripcion : frente.resumen}</p>
+  {
+    detallado && (
+      <ul class="tf__consignas">
+        {frente.consignas.map((c) => (
+          <li>{c}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .tf {
+    position: relative;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-top: 12px solid var(--c);
+    border-radius: var(--radio);
+    padding: 1.6rem 1.5rem 1.7rem;
+    overflow: hidden;
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+    box-shadow: var(--sombra-dura-sm);
+    height: 100%;
+  }
+  .tf:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--c);
+  }
+  .tf__nombre {
+    color: var(--violeta);
+    font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
+    margin-bottom: 0.7rem;
+  }
+  .tf__texto {
+    color: color-mix(in srgb, var(--tinta) 82%, var(--papel));
+  }
+  .tf__consignas {
+    list-style: none;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .tf__consignas li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .tf__consignas li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: var(--c);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+</style>

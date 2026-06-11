@@ -1,0 +1,219 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import TarjetaPrensa from "../../components/TarjetaPrensa.astro";
+
+const piezas = (await getCollection("prensa", ({ data }) => !data.borrador)).sort(
+  (a, b) => b.data.fecha.getTime() - a.data.fecha.getTime()
+);
+
+const filtros = [
+  { clave: "todas", texto: "Todas" },
+  { clave: "comunicado", texto: "Comunicados" },
+  { clave: "opinion", texto: "Opinión" },
+  { clave: "formacion", texto: "Formación" },
+];
+---
+
+<Base
+  titulo="Prensa y Formación"
+  descripcion="Comunicados oficiales, artículos de opinión y biblioteca digital de La Creciente."
+>
+  <section class="encab">
+    <div class="contenedor">
+      <p class="kicker encab__kicker">Prensa &amp; formación</p>
+      <h1 class="encab__titulo">La palabra<br />organizada</h1>
+      <p class="encab__bajada">
+        Comunicados oficiales, artículos de opinión y materiales de formación.
+        Aquí tomamos posición y compartimos las herramientas para pensar y
+        transformar.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="filtros" role="group" aria-label="Filtrar por tipo">
+        {
+          filtros.map((f, i) => (
+            <button
+              class:list={["filtro", { activo: i === 0 }]}
+              data-filtro={f.clave}
+              type="button"
+            >
+              {f.texto}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="prensa__grid" id="lista-prensa">
+        {
+          piezas.map((p) => (
+            <div class="prensa__item" data-tipo={p.data.tipo}>
+              <TarjetaPrensa
+                url={`/prensa/${p.id}/`}
+                titulo={p.data.titulo}
+                resumen={p.data.resumen}
+                fecha={p.data.fecha}
+                tipo={p.data.tipo}
+                autor={p.data.autor}
+              />
+            </div>
+          ))
+        }
+      </div>
+      <p class="vacio" hidden>No hay piezas de este tipo todavía.</p>
+    </div>
+  </section>
+
+  <!-- Biblioteca digital -->
+  <section class="biblioteca">
+    <div class="contenedor biblioteca__inner">
+      <div>
+        <p class="kicker biblioteca__kicker">Biblioteca digital</p>
+        <h2>Para estudiar y debatir</h2>
+        <p class="biblioteca__texto">
+          Estamos reuniendo documentos de formación, estatutos, propuestas
+          programáticas y materiales históricos en una biblioteca abierta.
+          Pronto disponible para descarga.
+        </p>
+        <a href="/contacto/" class="btn btn--amarillo">Avísame cuando esté →</a>
+      </div>
+      <div class="biblioteca__sello" aria-hidden="true">
+        <span>Próximamente</span>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const botones = document.querySelectorAll<HTMLButtonElement>(".filtro");
+  const items = document.querySelectorAll<HTMLElement>(".prensa__item");
+  const vacio = document.querySelector<HTMLElement>(".vacio");
+
+  botones.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const f = btn.dataset.filtro;
+      botones.forEach((b) => b.classList.toggle("activo", b === btn));
+      let visibles = 0;
+      items.forEach((it) => {
+        const mostrar = f === "todas" || it.dataset.tipo === f;
+        it.hidden = !mostrar;
+        if (mostrar) visibles++;
+      });
+      if (vacio) vacio.hidden = visibles !== 0;
+    });
+  });
+</script>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 48ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 2.4rem;
+  }
+  .filtro {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    padding: 0.5em 1.1em;
+    background: transparent;
+    color: var(--tinta);
+    border: 2px solid var(--tinta);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.14s ease, color 0.14s ease;
+  }
+  .filtro:hover {
+    background: var(--papel-3);
+  }
+  .filtro.activo {
+    background: var(--violeta);
+    color: var(--papel);
+  }
+
+  .prensa__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .vacio {
+    text-align: center;
+    color: var(--tenue);
+    font-size: 1.1rem;
+    padding: 2rem 0;
+  }
+
+  .biblioteca {
+    background: var(--papel-2);
+    border-top: 3px solid var(--tinta);
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+  .biblioteca__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .biblioteca__kicker {
+    color: var(--tenue);
+  }
+  .biblioteca h2 {
+    color: var(--violeta);
+    margin: 0.5rem 0 1rem;
+  }
+  .biblioteca__texto {
+    max-width: 50ch;
+    margin-bottom: 1.6rem;
+    font-size: 1.08rem;
+  }
+  .biblioteca__sello {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border: 4px solid var(--violeta);
+    border-radius: 50%;
+    color: var(--violeta);
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.2rem;
+    transform: rotate(-8deg);
+    box-shadow: var(--sombra-dura-sm);
+  }
+  @media (max-width: 620px) {
+    .biblioteca__sello {
+      display: none;
+    }
+  }
+</style>

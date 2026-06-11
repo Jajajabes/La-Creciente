@@ -1,0 +1,313 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Marquesina from "../components/Marquesina.astro";
+import OlaDivisor from "../components/OlaDivisor.astro";
+import TarjetaFrente from "../components/TarjetaFrente.astro";
+import TarjetaPrensa from "../components/TarjetaPrensa.astro";
+import { frentes } from "../data/sitio";
+
+const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
+  .sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime())
+  .slice(0, 3);
+---
+
+<Base>
+  <!-- ===================== HERO / MANIFIESTO ===================== -->
+  <section class="hero">
+    <div class="hero__olas" aria-hidden="true">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,220 C240,160 360,280 600,230 C840,180 960,270 1200,220 C1320,196 1400,230 1440,220 L1440,320 L0,320 Z" fill="rgba(255,255,255,0.06)"></path>
+        <path d="M0,260 C240,210 360,310 600,268 C840,226 960,300 1200,262 C1320,242 1400,268 1440,260 L1440,320 L0,320 Z" fill="rgba(255,255,255,0.05)"></path>
+      </svg>
+    </div>
+
+    <div class="contenedor hero__inner">
+      <p class="kicker hero__kicker">Organización política de izquierda</p>
+      <h1 class="hero__titulo">
+        <span class="hero__sube">Crece</span><br />el poder<br />de la gente
+      </h1>
+      <p class="hero__manifiesto">
+        Somos <strong>La Creciente</strong>: estudiantes, trabajadoras y trabajadores,
+        feministas y pueblo organizado. Crecemos como el río que no pide permiso
+        <span class="hero__sep">—</span> gota a gota, hasta desbordar la injusticia.
+      </p>
+      <div class="hero__acciones">
+        <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá ✊</a>
+        <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">Conócenos</a>
+      </div>
+    </div>
+  </section>
+
+  <Marquesina />
+
+  <!-- ===================== MANIFIESTO LARGO ===================== -->
+  <section class="seccion manifiesto">
+    <div class="contenedor manifiesto__grid">
+      <div class="manifiesto__col-eti">
+        <p class="kicker">Nuestro manifiesto</p>
+      </div>
+      <div class="manifiesto__col-texto revelar">
+        <p class="manifiesto__lead">
+          Creemos que otro país es posible y que se construye desde abajo,
+          organizando la esperanza.
+        </p>
+        <p>
+          La crisis no es un destino: es el resultado de decisiones que
+          beneficiaron a unos pocos. Frente al despojo, la precariedad y la
+          violencia, oponemos <strong>organización popular</strong>, memoria y
+          un proyecto de vida digna para las mayorías.
+        </p>
+        <p>
+          No nos resignamos a mirar la política como espectáculo. La hacemos con
+          nuestras manos, en la universidad y el barrio, en el sindicato y la
+          vereda. <mark class="marca-resaltada">La emancipación será obra de las y los de abajo, o no será.</mark>
+        </p>
+        <a href="/quienes-somos/" class="btn btn--violeta">Lee la línea política →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FRENTES ===================== -->
+  <section class="seccion frentes-prev" id="frentes">
+    <div class="contenedor">
+      <header class="cab-seccion">
+        <div>
+          <p class="kicker">Líneas de trabajo</p>
+          <h2>Nuestros frentes</h2>
+        </div>
+        <a href="/frentes/" class="btn btn--fantasma">Ver todos →</a>
+      </header>
+      <div class="frentes-prev__grid">
+        {frentes.map((f) => <TarjetaFrente frente={f} />)}
+      </div>
+    </div>
+  </section>
+
+  <OlaDivisor fondo="var(--papel)" relleno="var(--violeta-profundo)" />
+
+  <!-- ===================== ÚLTIMAS NOTICIAS ===================== -->
+  <section class="noticias">
+    <div class="contenedor">
+      <header class="cab-seccion cab-seccion--claro">
+        <div>
+          <p class="kicker">Lo último</p>
+          <h2>Prensa &amp; formación</h2>
+        </div>
+        <a href="/prensa/" class="btn btn--amarillo">Toda la prensa →</a>
+      </header>
+      <div class="noticias__grid">
+        {
+          noticias.map((n) => (
+            <TarjetaPrensa
+              url={`/prensa/${n.id}/`}
+              titulo={n.data.titulo}
+              resumen={n.data.resumen}
+              fecha={n.data.fecha}
+              tipo={n.data.tipo}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA GIGANTE ===================== -->
+  <section class="cta-gigante">
+    <div class="contenedor cta-gigante__inner">
+      <p class="kicker cta-gigante__kicker">No mires desde la orilla</p>
+      <h2 class="cta-gigante__titulo">Súmate a<br />la marea</h2>
+      <p class="cta-gigante__texto">
+        No hace falta ser militante de estructura para aportar. Súmate como
+        simpatizante, voluntaria o puente con tu comunidad. Te necesitamos.
+      </p>
+      <a href="/contacto/" class="btn btn--amarillo cta-gigante__btn">Quiero sumarme →</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background: var(--violeta);
+    color: var(--papel);
+    overflow: hidden;
+    padding-block: clamp(4rem, 10vw, 9rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .hero__olas {
+    position: absolute;
+    inset: auto 0 0 0;
+    line-height: 0;
+  }
+  .hero__olas svg {
+    width: 100%;
+    height: clamp(160px, 26vw, 320px);
+    display: block;
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+  .hero__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.4rem;
+  }
+  .hero__titulo {
+    color: var(--papel);
+    margin-bottom: 1.6rem;
+  }
+  .hero__sube {
+    position: relative;
+    color: var(--amarillo);
+    display: inline-block;
+  }
+  .hero__sube::after {
+    content: "";
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    bottom: 0.08em;
+    height: 0.16em;
+    background: var(--amarillo);
+    opacity: 0.55;
+  }
+  .hero__manifiesto {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 1rem + 1.4vw, 1.85rem);
+    line-height: 1.4;
+    max-width: 30ch;
+    margin-bottom: 2.4rem;
+    color: color-mix(in srgb, var(--papel) 92%, transparent);
+  }
+  .hero__manifiesto strong {
+    color: var(--papel);
+    font-weight: 700;
+  }
+  .hero__sep {
+    color: var(--amarillo);
+  }
+  .hero__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .hero__btn-grande {
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem);
+    padding: 1em 1.6em;
+  }
+  .hero__btn-claro {
+    color: var(--papel);
+    border-color: var(--papel);
+  }
+  .hero__btn-claro:hover {
+    background: var(--papel);
+    color: var(--violeta);
+  }
+
+  /* ---------- Cabeceras de sección ---------- */
+  .cab-seccion {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.8rem;
+  }
+  .cab-seccion h2 {
+    margin-top: 0.4rem;
+    color: var(--violeta);
+  }
+  .cab-seccion .kicker {
+    color: var(--tenue);
+  }
+  .cab-seccion--claro h2 {
+    color: var(--papel);
+  }
+  .cab-seccion--claro .kicker {
+    color: var(--amarillo);
+  }
+
+  /* ---------- Manifiesto ---------- */
+  .manifiesto__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+  }
+  @media (max-width: 760px) {
+    .manifiesto__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .manifiesto__lead {
+    font-family: var(--titulo);
+    font-size: clamp(1.7rem, 1.2rem + 2.5vw, 2.8rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--violeta);
+    margin-bottom: 1.6rem;
+  }
+  .manifiesto__col-texto p {
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+    margin-bottom: 1.2rem;
+    max-width: 60ch;
+  }
+  .manifiesto__col-texto .btn {
+    margin-top: 1rem;
+  }
+
+  /* ---------- Frentes preview ---------- */
+  .frentes-prev {
+    background: var(--papel-2);
+    border-block: 3px solid var(--tinta);
+  }
+  .frentes-prev__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 1.4rem;
+  }
+
+  /* ---------- Noticias ---------- */
+  .noticias {
+    background: var(--violeta-profundo);
+    color: var(--papel);
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .noticias__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+
+  /* ---------- CTA gigante ---------- */
+  .cta-gigante {
+    background: var(--amarillo);
+    color: var(--tinta);
+    border-top: 3px solid var(--tinta);
+    padding-block: clamp(4rem, 9vw, 8rem);
+    text-align: center;
+  }
+  .cta-gigante__kicker {
+    color: var(--violeta);
+    justify-content: center;
+    display: flex;
+  }
+  .cta-gigante__titulo {
+    color: var(--violeta);
+    margin: 1rem 0 1.4rem;
+  }
+  .cta-gigante__texto {
+    max-width: 46ch;
+    margin: 0 auto 2.4rem;
+    font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem);
+    font-weight: 500;
+  }
+  .cta-gigante__btn {
+    --bg: var(--violeta);
+    --fg: var(--papel);
+    font-size: clamp(1.15rem, 0.9rem + 1.1vw, 1.6rem);
+    padding: 1em 1.8em;
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import Base from "../layouts/Base.astro";
+import TarjetaFrente from "../components/TarjetaFrente.astro";
+import Marquesina from "../components/Marquesina.astro";
+import { frentes } from "../data/sitio";
+---
+
+<Base
+  titulo="Frentes y líneas de trabajo"
+  descripcion="Juventud, trabajadores, feminismos, territorial y estudiantil: así organizamos la marea."
+>
+  <section class="encab">
+    <div class="contenedor">
+      <p class="kicker encab__kicker">Líneas de trabajo</p>
+      <h1 class="encab__titulo">Frentes<br />de lucha</h1>
+      <p class="encab__bajada">
+        La marea crece por muchos cauces. Cada frente organiza un sector de
+        nuestra sociedad alrededor de sus luchas concretas, sin perder de vista
+        el proyecto común. Encuentra el tuyo.
+      </p>
+    </div>
+  </section>
+
+  <Marquesina items={frentes.map((f) => f.nombre)} />
+
+  <section class="seccion">
+    <div class="contenedor frentes__grid">
+      {frentes.map((f) => <TarjetaFrente frente={f} detallado />)}
+
+      <article class="frente-sumar">
+        <h3>¿Falta tu lucha?</h3>
+        <p>
+          La Creciente está en construcción. Si tu causa o tu sector aún no tiene
+          frente, escríbenos: lo armamos juntas.
+        </p>
+        <a href="/contacto/" class="btn btn--amarillo">Proponé un frente →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="franja-cta">
+    <div class="contenedor franja-cta__inner">
+      <h2>Cada frente es una puerta de entrada</h2>
+      <a href="/contacto/" class="btn btn--amarillo">Súmate a un frente →</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 48ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .frentes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .frente-sumar {
+    border: 3px dashed var(--tinta);
+    border-radius: var(--radio);
+    padding: 1.8rem 1.6rem;
+    background: var(--papel-2);
+    display: flex;
+    flex-direction: column;
+  }
+  .frente-sumar h3 {
+    color: var(--violeta);
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .frente-sumar p {
+    margin-bottom: 1.4rem;
+    flex: 1;
+  }
+
+  .franja-cta {
+    background: var(--violeta-profundo);
+    color: var(--papel);
+    border-top: 3px solid var(--tinta);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .franja-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .franja-cta h2 {
+    color: var(--papel);
+    max-width: 18ch;
+  }
+</style>

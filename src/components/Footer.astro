@@ -1,0 +1,127 @@
+---
+import { sitio, navegacion } from "../data/sitio";
+import Logo from "./Logo.astro";
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor pie__grid">
+    <div class="pie__marca">
+      <Logo variante="papel" />
+      <p class="pie__lema">{sitio.lema}.</p>
+      <a href="/contacto/" class="btn btn--amarillo">Súmate / Militá →</a>
+    </div>
+
+    <nav class="pie__nav" aria-label="Pie de página">
+      <h4>Navegación</h4>
+      <ul>
+        {navegacion.map((i) => <li><a href={i.url}>{i.texto}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="pie__redes">
+      <h4>Encontranos</h4>
+      <ul>
+        {
+          sitio.redes.map((r) => (
+            <li>
+              <a href={r.url} target="_blank" rel="noopener noreferrer">
+                {r.nombre} <span>{r.etiqueta}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="pie__mail">
+        <a href={`mailto:${sitio.email}`}>{sitio.email}</a><br />
+        {sitio.ciudad}
+      </p>
+    </div>
+  </div>
+
+  <div class="contenedor pie__legal">
+    <p>© {anio} {sitio.nombre}. Hecho con trabajo militante.</p>
+    <p class="pie__datos">
+      Tratamos tus datos según la Ley 1581 de 2012 (habeas data). No compartimos
+      tu información. <a href="/contacto/">Política de datos</a>.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    background: var(--violeta-profundo);
+    color: var(--papel);
+    border-top: 3px solid var(--tinta);
+    padding-top: clamp(3rem, 6vw, 5rem);
+  }
+  .pie__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  @media (max-width: 760px) {
+    .pie__grid {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+    }
+  }
+  .pie__lema {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin: 1.2rem 0 1.6rem;
+    color: color-mix(in srgb, var(--papel) 88%, transparent);
+    max-width: 30ch;
+  }
+  .pie h4 {
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    color: var(--amarillo);
+    margin-bottom: 1rem;
+  }
+  .pie ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .pie__nav a,
+  .pie__redes a {
+    color: var(--papel);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .pie__nav a:hover,
+  .pie__redes a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--amarillo);
+  }
+  .pie__redes a span {
+    color: color-mix(in srgb, var(--papel) 60%, transparent);
+    font-size: 0.9rem;
+  }
+  .pie__mail {
+    margin-top: 1.3rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--papel) 78%, transparent);
+  }
+  .pie__legal {
+    border-top: 1px solid color-mix(in srgb, var(--papel) 22%, transparent);
+    padding-block: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--papel) 70%, transparent);
+  }
+  .pie__datos {
+    max-width: 52ch;
+  }
+  .pie__datos a {
+    color: var(--amarillo);
+  }
+</style>

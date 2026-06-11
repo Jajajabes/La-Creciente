@@ -1,0 +1,10 @@
+# Configuración de despliegue en Netlify.
+# (Si usan Cloudflare Pages, ignoren este archivo: configuren
+#  build command "npm run build" y output "dist" en el panel.)
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

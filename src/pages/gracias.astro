@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base titulo="¡Gracias por sumarte!" descripcion="Recibimos tus datos. Pronto te contactamos.">
+  <section class="gracias">
+    <div class="contenedor gracias__inner">
+      <p class="kicker gracias__kicker">Bienvenida, bienvenido</p>
+      <h1 class="gracias__titulo">¡Ya sos<br />parte de la marea!</h1>
+      <p class="gracias__texto">
+        Recibimos tus datos. Un equipo de La Creciente te va a contactar pronto
+        para encontrar tu lugar en la organización. Mientras tanto, seguinos y
+        compartí.
+      </p>
+      <div class="gracias__btns">
+        <a href="/" class="btn btn--amarillo">Volver al inicio</a>
+        <a href="/prensa/" class="btn btn--fantasma gracias__btn-claro">Leé nuestra prensa</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gracias {
+    background: var(--violeta);
+    color: var(--papel);
+    min-height: 70vh;
+    display: grid;
+    align-items: center;
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+  .gracias__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .gracias__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .gracias__texto {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 48ch;
+    margin-bottom: 2.4rem;
+    color: color-mix(in srgb, var(--papel) 92%, transparent);
+  }
+  .gracias__btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .gracias__btn-claro {
+    color: var(--papel);
+    border-color: var(--papel);
+  }
+  .gracias__btn-claro:hover {
+    background: var(--papel);
+    color: var(--violeta);
+  }
+</style>

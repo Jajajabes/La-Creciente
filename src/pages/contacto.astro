@@ -1,0 +1,419 @@
+---
+import Base from "../layouts/Base.astro";
+import { sitio, frentes } from "../data/sitio";
+---
+
+<Base
+  titulo="Súmate / Contacto"
+  descripcion="Súmate a La Creciente: formulario para simpatizantes, contacto y donaciones."
+>
+  <section class="encab">
+    <div class="contenedor">
+      <p class="kicker encab__kicker">Súmate / Militá</p>
+      <h1 class="encab__titulo">Hacé crecer<br />la marea</h1>
+      <p class="encab__bajada">
+        No hace falta pertenecer a la estructura formal para aportar. Dejanos
+        tus datos y el equipo te contacta para encontrar tu lugar en la lucha.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor contacto__grid">
+      <!-- ===== Formulario ===== -->
+      <div class="form-bloque">
+        <h2 class="form-bloque__titulo">Quiero sumarme</h2>
+
+        <!--
+          Formulario listo para Netlify Forms (data-netlify="true").
+          Si despliegan en Cloudflare Pages u otro, ver el README para
+          conectar Formspree o una función. El honeypot "bot-field"
+          filtra spam de bots.
+        -->
+        <form
+          name="sumate"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/gracias/"
+          class="form"
+        >
+          <input type="hidden" name="form-name" value="sumate" />
+          <p class="form__honeypot">
+            <label>No llenar: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form__fila">
+            <div class="campo">
+              <label for="nombre">Nombre y apellido *</label>
+              <input id="nombre" name="nombre" type="text" required autocomplete="name" />
+            </div>
+            <div class="campo">
+              <label for="email">Correo electrónico *</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form__fila">
+            <div class="campo">
+              <label for="ciudad">Ciudad / territorio</label>
+              <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" />
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono / WhatsApp (opcional)</label>
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="frente">¿Qué frente te interesa?</label>
+            <select id="frente" name="frente">
+              <option value="">Sin preferencia / no sé aún</option>
+              {frentes.map((f) => <option value={f.nombre}>{f.nombre}</option>)}
+            </select>
+          </div>
+
+          <fieldset class="campo form__fieldset">
+            <legend>¿Cómo querés participar?</legend>
+            <div class="form__checks">
+              <label><input type="checkbox" name="participacion" value="militar" /> Militar / círculo de base</label>
+              <label><input type="checkbox" name="participacion" value="voluntariado" /> Voluntariado puntual</label>
+              <label><input type="checkbox" name="participacion" value="difusion" /> Difusión y redes</label>
+              <label><input type="checkbox" name="participacion" value="formacion" /> Formación / estudio</label>
+              <label><input type="checkbox" name="participacion" value="aportar" /> Aportar económicamente</label>
+            </div>
+          </fieldset>
+
+          <div class="campo">
+            <label for="mensaje">Contanos algo de vos (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+          </div>
+
+          <label class="form__consent">
+            <input type="checkbox" name="consentimiento" required />
+            <span>
+              Autorizo el tratamiento de mis datos según la
+              <a href="#datos">política de datos</a> (Ley 1581 de 2012). *
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn--violeta form__enviar">
+            Enviar y sumarme ✊
+          </button>
+          <p class="form__nota">* Campos obligatorios. Tus datos no se comparten con terceros.</p>
+        </form>
+      </div>
+
+      <!-- ===== Lateral: contacto + donaciones ===== -->
+      <aside class="lateral">
+        <div class="lateral__bloque">
+          <h3>Escribinos directo</h3>
+          <p>
+            <a href={`mailto:${sitio.email}`} class="lateral__mail">{sitio.email}</a>
+          </p>
+          <p class="lateral__ciudad">{sitio.ciudad}</p>
+          <ul class="lateral__redes">
+            {
+              sitio.redes.map((r) => (
+                <li>
+                  <a href={r.url} target="_blank" rel="noopener noreferrer">
+                    {r.nombre} <span>{r.etiqueta}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="lateral__bloque lateral__donar">
+          <span class="lateral__badge">Próximamente</span>
+          <h3>Donaciones</h3>
+          <p>
+            Estamos habilitando un canal de donaciones <strong>transparente y en
+            regla</strong> con la normativa electoral (CNE). No recibimos aportes
+            anónimos ni de fuentes prohibidas.
+          </p>
+          <p class="lateral__donar-nota">
+            Mientras tanto, marcá <em>«Aportar económicamente»</em> en el
+            formulario y te contactamos.
+          </p>
+          <button class="btn btn--fantasma" disabled>Donar (pronto)</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Política de datos ===== -->
+  <section class="datos" id="datos">
+    <div class="contenedor datos__inner">
+      <p class="kicker datos__kicker">Transparencia</p>
+      <h2>Política de tratamiento de datos</h2>
+      <div class="datos__texto prosa">
+        <p>
+          En La Creciente respetamos tu privacidad. Recolectamos únicamente los
+          datos que nos das voluntariamente en este formulario, con la finalidad
+          de contactarte e invitarte a participar en nuestras actividades.
+        </p>
+        <ul>
+          <li>No vendemos ni compartimos tu información con terceros.</li>
+          <li>Podés pedir acceder, actualizar o eliminar tus datos cuando quieras escribiendo a <a href={`mailto:${sitio.email}`}>{sitio.email}</a>.</li>
+          <li>Tratamos tus datos conforme a la Ley 1581 de 2012 y normas concordantes de Colombia (habeas data).</li>
+        </ul>
+        <p class="datos__aviso">
+          <strong>Nota:</strong> este es un texto base. Antes de publicar,
+          revisalo con alguien de confianza jurídica de la organización.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 46ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .contacto__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .contacto__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ----- Formulario ----- */
+  .form-bloque__titulo {
+    color: var(--violeta);
+    margin-bottom: 1.8rem;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+  .form__honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+  .form__fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.3rem;
+  }
+  @media (max-width: 540px) {
+    .form__fila {
+      grid-template-columns: 1fr;
+    }
+  }
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .campo label,
+  .form__fieldset legend {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .campo input,
+  .campo select,
+  .campo textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.7em 0.8em;
+    background: var(--papel);
+    color: var(--tinta);
+    border: 2px solid var(--tinta);
+    border-radius: var(--radio);
+  }
+  .campo input:focus,
+  .campo select:focus,
+  .campo textarea:focus {
+    outline: 3px solid var(--violeta-vivo);
+    outline-offset: 1px;
+  }
+  .form__fieldset {
+    border: none;
+    padding: 0;
+  }
+  .form__checks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.6rem 1rem;
+    margin-top: 0.5rem;
+  }
+  .form__checks label {
+    display: flex;
+    align-items: center;
+    gap: 0.5ch;
+    font-weight: 500;
+    font-size: 0.98rem;
+  }
+  .form__checks input,
+  .form__consent input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--violeta);
+  }
+  .form__consent {
+    display: flex;
+    gap: 0.6ch;
+    align-items: flex-start;
+    background: var(--papel-2);
+    border: 2px solid var(--papel-3);
+    padding: 0.9rem 1rem;
+    border-radius: var(--radio);
+    font-size: 0.95rem;
+  }
+  .form__consent a {
+    color: var(--violeta);
+  }
+  .form__enviar {
+    align-self: flex-start;
+    font-size: 1.15rem;
+  }
+  .form__nota {
+    font-size: 0.85rem;
+    color: var(--tenue);
+  }
+
+  /* ----- Lateral ----- */
+  .lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    position: sticky;
+    top: 100px;
+  }
+  @media (max-width: 880px) {
+    .lateral {
+      position: static;
+    }
+  }
+  .lateral__bloque {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    padding: 1.6rem;
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .lateral__bloque h3 {
+    color: var(--violeta);
+    font-size: 1.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .lateral__mail {
+    font-weight: 700;
+    color: var(--violeta);
+    font-size: 1.05rem;
+  }
+  .lateral__ciudad {
+    color: var(--tenue);
+    margin-top: 0.2rem;
+  }
+  .lateral__redes {
+    list-style: none;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .lateral__redes a {
+    text-decoration: none;
+    color: var(--tinta);
+    font-weight: 600;
+  }
+  .lateral__redes a span {
+    color: var(--tenue);
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+  .lateral__redes a:hover {
+    color: var(--violeta);
+  }
+
+  .lateral__donar {
+    background: var(--violeta);
+    color: var(--papel);
+    border-color: var(--tinta);
+    position: relative;
+  }
+  .lateral__donar h3 {
+    color: var(--papel);
+  }
+  .lateral__donar p {
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+    margin-bottom: 0.9rem;
+  }
+  .lateral__donar strong {
+    color: var(--amarillo);
+  }
+  .lateral__badge {
+    position: absolute;
+    top: -12px;
+    right: 14px;
+    background: var(--amarillo);
+    color: var(--tinta);
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    padding: 0.25em 0.7em;
+    border: 2px solid var(--tinta);
+    border-radius: 999px;
+    transform: rotate(4deg);
+  }
+  .lateral__donar-nota {
+    font-size: 0.92rem;
+  }
+  .lateral__donar .btn[disabled] {
+    color: var(--papel);
+    border-color: color-mix(in srgb, var(--papel) 50%, transparent);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ----- Datos ----- */
+  .datos {
+    background: var(--papel-2);
+    border-top: 3px solid var(--tinta);
+    padding-block: clamp(3rem, 6vw, 5rem);
+    scroll-margin-top: 90px;
+  }
+  .datos__kicker {
+    color: var(--tenue);
+  }
+  .datos h2 {
+    color: var(--violeta);
+    margin: 0.5rem 0 1.5rem;
+  }
+  .datos__aviso {
+    background: var(--papel);
+    border-left: 6px solid var(--amarillo);
+    padding: 0.9rem 1.1rem;
+    font-size: 0.98rem;
+  }
+</style>

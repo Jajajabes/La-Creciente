@@ -1,0 +1,100 @@
+---
+interface Props {
+  url: string;
+  titulo: string;
+  resumen: string;
+  fecha: Date;
+  tipo: "comunicado" | "opinion" | "formacion";
+  autor?: string;
+}
+const { url, titulo, resumen, fecha, tipo, autor } = Astro.props;
+
+const etiquetas: Record<Props["tipo"], { texto: string; color: string }> = {
+  comunicado: { texto: "Comunicado", color: "var(--rojo)" },
+  opinion: { texto: "Opinión", color: "var(--violeta)" },
+  formacion: { texto: "Formación", color: "var(--cian)" },
+};
+const et = etiquetas[tipo];
+const fechaTxt = fecha.toLocaleDateString("es-CO", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<article class="tp" style={`--tp-color:${et.color}`}>
+  <a href={url} class="tp__link">
+    <div class="tp__top">
+      <span class="tp__tipo">{et.texto}</span>
+      <time datetime={fecha.toISOString()}>{fechaTxt}</time>
+    </div>
+    <h3 class="tp__titulo">{titulo}</h3>
+    <p class="tp__resumen">{resumen}</p>
+    <span class="tp__mas">Leer {autor ? `· ${autor}` : ""} →</span>
+  </a>
+</article>
+
+<style>
+  .tp {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-dura-sm);
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+    height: 100%;
+  }
+  .tp:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--tinta);
+  }
+  .tp__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem 1.5rem 1.4rem;
+    text-decoration: none;
+    color: var(--tinta);
+  }
+  .tp__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+  }
+  .tp__tipo {
+    background: var(--tp-color);
+    color: var(--papel);
+    font-family: var(--display);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2em 0.7em;
+    border-radius: 999px;
+    font-size: 0.78rem;
+  }
+  .tp__top time {
+    color: var(--tenue);
+    font-weight: 600;
+  }
+  .tp__titulo {
+    font-size: clamp(1.25rem, 1.05rem + 1vw, 1.7rem);
+    line-height: 1.02;
+    margin-bottom: 0.7rem;
+  }
+  .tp__resumen {
+    color: color-mix(in srgb, var(--tinta) 80%, var(--papel));
+    font-size: 0.98rem;
+    margin-bottom: 1.4rem;
+    flex: 1;
+  }
+  .tp__mas {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--tp-color);
+    border-top: 2px solid var(--papel-3);
+    padding-top: 0.9rem;
+  }
+</style>

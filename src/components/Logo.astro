@@ -1,0 +1,32 @@
+---
+import { sitio } from "../data/sitio";
+interface Props {
+  variante?: "tinta" | "papel";
+  alto?: number;
+}
+const { variante = "tinta", alto = 48 } = Astro.props;
+---
+
+<img
+  src="/img/logo-creciente.png"
+  alt={`${sitio.nombre} — logo`}
+  height={alto}
+  class:list={["logo", { "logo--blanco": variante === "papel" }]}
+  style={`--alto:${alto}px`}
+  width="auto"
+  loading="eager"
+  decoding="async"
+/>
+
+<style>
+  .logo {
+    height: var(--alto);
+    width: auto;
+    display: block;
+  }
+  /* Versión blanca para fondos oscuros (el logo original es violeta
+     monocromo sobre transparente; lo pasamos a blanco con filtro). */
+  .logo--blanco {
+    filter: brightness(0) invert(1);
+  }
+</style>

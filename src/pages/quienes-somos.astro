@@ -1,0 +1,294 @@
+---
+import Base from "../layouts/Base.astro";
+import OlaDivisor from "../components/OlaDivisor.astro";
+import Marquesina from "../components/Marquesina.astro";
+
+const principios = [
+  {
+    titulo: "Justicia social",
+    texto:
+      "La riqueza la produce el pueblo y debe volver al pueblo. Luchamos contra la desigualdad como eje de todo lo demás.",
+    color: "var(--rojo)",
+  },
+  {
+    titulo: "Democracia de base",
+    texto:
+      "El poder se ejerce desde abajo, deliberando y decidiendo en común. Nada sobre nosotras sin nosotras.",
+    color: "var(--violeta)",
+  },
+  {
+    titulo: "Feminismo popular",
+    texto:
+      "Contra el patriarcado y por la vida libre de violencias. Los cuidados son un asunto colectivo y político.",
+    color: "var(--magenta)",
+  },
+  {
+    titulo: "Defensa de lo común",
+    texto:
+      "El agua, la tierra, la educación y la salud no son mercancías. Defendemos lo público y los bienes comunes.",
+    color: "var(--verde)",
+  },
+  {
+    titulo: "Internacionalismo",
+    texto:
+      "La lucha no tiene fronteras. Nos hermanamos con los pueblos que resisten en Nuestra América y el mundo.",
+    color: "var(--cian)",
+  },
+  {
+    titulo: "Unidad popular",
+    texto:
+      "Tejemos con otras fuerzas sin disolver nuestra identidad. La unidad es estratégica, no oportunista.",
+    color: "var(--amarillo)",
+  },
+];
+
+const hitos = [
+  { anio: "2023", texto: "Confluyen colectivos estudiantiles y populares. Primeros diseños y consignas de La Creciente." },
+  { anio: "2024", texto: "Impulso del proceso constituyente universitario en la UNAL y articulación territorial." },
+  { anio: "2025", texto: "Seminario político interno y propuesta de estatutos: damos forma a la organización." },
+  { anio: "2026", texto: "Presencia pública: lanzamos nuestra web y abrimos las puertas a simpatizantes." },
+];
+---
+
+<Base
+  titulo="Quiénes Somos"
+  descripcion="Historia de La Creciente, nuestros principios ideológicos y nuestra línea política."
+>
+  <!-- Encabezado -->
+  <section class="encab">
+    <div class="contenedor">
+      <p class="kicker encab__kicker">Quiénes somos</p>
+      <h1 class="encab__titulo">Una historia<br />que viene de abajo</h1>
+      <p class="encab__bajada">
+        La Creciente nace del encuentro de luchas estudiantiles, populares,
+        feministas y territoriales. No somos un nombre improvisado: somos años de
+        trabajo militante que decidieron confluir.
+      </p>
+    </div>
+  </section>
+
+  <Marquesina
+    items={["Justicia social", "Democracia de base", "Feminismo popular", "Defensa de lo común", "Internacionalismo", "Unidad popular"]}
+  />
+
+  <!-- Historia -->
+  <section class="seccion historia">
+    <div class="contenedor historia__grid">
+      <div class="historia__texto revelar">
+        <p class="kicker">Nuestra historia</p>
+        <h2>De la gota al desborde</h2>
+        <p>
+          Tomamos el nombre de aquello que crece sin pedir permiso: la creciente
+          de un río que, gota a gota, termina por desbordar. Así entendemos la
+          política: como un proceso paciente y colectivo de acumulación de
+          fuerzas.
+        </p>
+        <p>
+          Venimos de las asambleas universitarias, de los paros, de las
+          organizaciones de mujeres y de los procesos barriales y campesinos. En
+          ese camino entendimos que la indignación dispersa no alcanza: hace
+          falta <strong>organización</strong> con principios, formación y
+          estrategia.
+        </p>
+        <p>
+          Hoy somos una organización política de izquierda que aspira a aportar a
+          la construcción de un proyecto popular para Colombia, junto a otras
+          fuerzas del cambio.
+        </p>
+      </div>
+      <ol class="linea-tiempo" aria-label="Hitos de La Creciente">
+        {
+          hitos.map((h) => (
+            <li class="linea-tiempo__item revelar">
+              <span class="linea-tiempo__anio">{h.anio}</span>
+              <p>{h.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Principios -->
+  <section class="seccion principios">
+    <div class="contenedor">
+      <header class="cab-seccion">
+        <div>
+          <p class="kicker">En qué creemos</p>
+          <h2>Principios ideológicos</h2>
+        </div>
+      </header>
+      <div class="principios__grid">
+        {
+          principios.map((p) => (
+            <article class="principio" style={`--c:${p.color}`}>
+              <span class="principio__marca" aria-hidden="true" />
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <OlaDivisor fondo="var(--papel)" relleno="var(--violeta)" />
+
+  <!-- Línea política -->
+  <section class="linea-politica">
+    <div class="contenedor linea-politica__inner">
+      <p class="kicker linea-politica__kicker">Nuestra línea política</p>
+      <h2>Hacia dónde vamos</h2>
+      <div class="linea-politica__cols">
+        <p>
+          Apostamos por la <strong>unidad de las fuerzas del cambio</strong> y por
+          un gobierno popular que profundice las reformas pendientes: agraria,
+          laboral, de la salud, educativa y ambiental. Pero sabemos que ningún
+          cambio se sostiene sin pueblo organizado que lo respalde y lo empuje.
+        </p>
+        <p>
+          Por eso nuestra tarea central es <strong>construir poder popular desde
+          la base</strong>: en la universidad, el trabajo, los territorios y los
+          feminismos. Combinamos la movilización con la formación y la
+          institucionalidad cuando sirve al pueblo, sin renunciar nunca a la
+          autonomía y la crítica.
+        </p>
+      </div>
+      <a href="/contacto/" class="btn btn--amarillo">Construí con nosotras →</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(3.5rem, 8vw, 7rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 46ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .historia__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .historia__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .historia__texto h2 {
+    color: var(--violeta);
+    margin: 0.5rem 0 1.3rem;
+  }
+  .historia__texto p {
+    margin-bottom: 1.1rem;
+    max-width: 58ch;
+    font-size: 1.08rem;
+  }
+
+  .linea-tiempo {
+    list-style: none;
+    border-left: 3px solid var(--tinta);
+    padding-left: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  .linea-tiempo__item {
+    position: relative;
+  }
+  .linea-tiempo__item::before {
+    content: "";
+    position: absolute;
+    left: calc(-1.6rem - 1.5px);
+    top: 0.15em;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: var(--amarillo);
+    border: 3px solid var(--tinta);
+    border-radius: 50%;
+  }
+  .linea-tiempo__anio {
+    font-family: var(--display);
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--violeta);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .principios {
+    background: var(--papel-2);
+    border-block: 3px solid var(--tinta);
+  }
+  .principios__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+  }
+  .principio {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .principio__marca {
+    display: block;
+    width: 44px;
+    height: 10px;
+    background: var(--c);
+    margin-bottom: 1rem;
+  }
+  .principio h3 {
+    color: var(--violeta);
+    margin-bottom: 0.6rem;
+    font-size: 1.4rem;
+  }
+
+  .linea-politica {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .linea-politica__kicker {
+    color: var(--amarillo);
+  }
+  .linea-politica h2 {
+    color: var(--papel);
+    margin: 0.6rem 0 2rem;
+  }
+  .linea-politica__cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.4rem;
+  }
+  .linea-politica__cols p {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--papel) 92%, transparent);
+  }
+  .linea-politica__cols strong {
+    color: var(--amarillo);
+  }
+</style>

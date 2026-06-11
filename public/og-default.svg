@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#120d18"/>
+  <rect x="40" y="40" width="1120" height="550" fill="#340052"/>
+  <g fill="none" stroke="#f3ecdd" stroke-width="10" stroke-linecap="round" opacity="0.5">
+    <path d="M40 470 q90 -70 180 0 t180 0 t180 0 t180 0 t180 0 t180 0"/>
+    <path d="M40 420 q90 -70 180 0 t180 0 t180 0 t180 0 t180 0 t180 0" opacity="0.6"/>
+  </g>
+  <text x="90" y="250" font-family="Arial Black, sans-serif" font-size="150" font-weight="900" fill="#f3ecdd" letter-spacing="-4">LA CRECIENTE</text>
+  <text x="96" y="330" font-family="Georgia, serif" font-style="italic" font-size="46" fill="#f4b400">Crece el poder de la gente</text>
+  <text x="96" y="540" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#f3ecdd" letter-spacing="2">ORGANIZACIÓN POLÍTICA DE IZQUIERDA</text>
+</svg>

@@ -1,0 +1,79 @@
+---
+interface Props {
+  items?: string[];
+  fondo?: string;
+  color?: string;
+}
+const {
+  items = [
+    "Crece el poder de la gente",
+    "Súmate a la marea",
+    "Educación pública",
+    "Vida digna",
+    "Poder popular",
+    "Feminismo de clase",
+    "Defensa del territorio",
+    "Organizar la esperanza",
+  ],
+  fondo = "var(--violeta)",
+  color = "var(--papel)",
+} = Astro.props;
+
+const lista = [...items, ...items]; // duplicado para bucle continuo
+---
+
+<div class="marq" style={`--mq-bg:${fondo}; --mq-fg:${color}`} aria-hidden="true">
+  <div class="marq__pista">
+    {
+      lista.map((t) => (
+        <span class="marq__item">
+          {t}
+          <span class="marq__sep">✦</span>
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marq {
+    background: var(--mq-bg);
+    color: var(--mq-fg);
+    border-block: 3px solid var(--tinta);
+    overflow: hidden;
+    padding-block: 0.7rem;
+  }
+  .marq__pista {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: desfile 32s linear infinite;
+    will-change: transform;
+  }
+  .marq:hover .marq__pista {
+    animation-play-state: paused;
+  }
+  .marq__item {
+    font-family: var(--display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 1.6rem);
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.4rem;
+    padding-inline: 0.7rem;
+  }
+  .marq__sep {
+    color: var(--amarillo);
+  }
+  @keyframes desfile {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marq__pista {
+      animation: none;
+    }
+  }
+</style>

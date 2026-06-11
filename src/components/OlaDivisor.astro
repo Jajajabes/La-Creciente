@@ -1,0 +1,39 @@
+---
+/**
+ * Divisor de "marea": ola que separa secciones.
+ * `fondo` = color de la sección de arriba (de donde "baja" el agua).
+ * `relleno` = color del agua / sección de abajo.
+ */
+interface Props {
+  fondo?: string;
+  relleno?: string;
+  invertir?: boolean;
+}
+const { fondo = "var(--papel)", relleno = "var(--tinta)", invertir = false } = Astro.props;
+---
+
+<div class="ola" style={`--fondo:${fondo}; --relleno:${relleno}; transform:${invertir ? "scaleY(-1)" : "none"}`}>
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="1440" height="90" fill="var(--fondo)"></rect>
+    <path
+      d="M0,48 C180,18 320,78 540,54 C760,30 900,72 1120,52 C1280,38 1380,60 1440,50 L1440,90 L0,90 Z"
+      fill="var(--relleno)"></path>
+    <path
+      d="M0,48 C180,18 320,78 540,54 C760,30 900,72 1120,52 C1280,38 1380,60 1440,50"
+      fill="none" stroke="var(--relleno)" stroke-width="6"
+      stroke-dasharray="2 14" stroke-linecap="round" opacity="0.55"
+      transform="translate(0,-14)"></path>
+  </svg>
+</div>
+
+<style>
+  .ola {
+    display: block;
+    line-height: 0;
+  }
+  .ola svg {
+    display: block;
+    width: 100%;
+    height: clamp(48px, 6vw, 90px);
+  }
+</style>
