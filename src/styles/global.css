@@ -58,6 +58,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px; /* deja espacio bajo el header fijo al saltar a anclas */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -122,16 +123,16 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(3rem, 1.5rem + 9vw, 8.5rem);
+  font-size: clamp(2.1rem, 1.5rem + 3vw, 3.9rem);
   letter-spacing: -0.005em;
 }
 
 h2 {
-  font-size: clamp(2.2rem, 1.2rem + 4.5vw, 4.6rem);
+  font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.9rem);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.4rem);
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
 }
 
 p {
@@ -228,6 +229,20 @@ a {
   color: var(--papel);
   transform: translate(-2px, -2px);
   box-shadow: var(--sombra-dura-sm);
+}
+
+/* ---------- Iconos (astro-icon) ---------- */
+.ico {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.18em;
+  flex-shrink: 0;
+}
+/* En botones el icono se alinea por flex; afinamos tamaño */
+.btn .ico {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: 0;
 }
 
 /* ---------- Utilidades ---------- */

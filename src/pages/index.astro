@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import Marquesina from "../components/Marquesina.astro";
 import OlaDivisor from "../components/OlaDivisor.astro";
@@ -33,7 +34,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
         <span class="hero__sep">—</span> gota a gota, hasta desbordar la injusticia.
       </p>
       <div class="hero__acciones">
-        <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá ✊</a>
+        <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá <Icon name="ph:hand-fist" /></a>
         <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">Conócenos</a>
       </div>
     </div>
@@ -63,7 +64,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
           nuestras manos, en la universidad y el barrio, en el sindicato y la
           vereda. <mark class="marca-resaltada">La emancipación será obra de las y los de abajo, o no será.</mark>
         </p>
-        <a href="/quienes-somos/" class="btn btn--violeta">Lee la línea política →</a>
+        <a href="/quienes-somos/" class="btn btn--violeta">Lee la línea política <Icon name="ph:arrow-right" /></a>
       </div>
     </div>
   </section>
@@ -76,7 +77,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
           <p class="kicker">Líneas de trabajo</p>
           <h2>Nuestros frentes</h2>
         </div>
-        <a href="/frentes/" class="btn btn--fantasma">Ver todos →</a>
+        <a href="/frentes/" class="btn btn--fantasma">Ver todos <Icon name="ph:arrow-right" /></a>
       </header>
       <div class="frentes-prev__grid">
         {frentes.map((f) => <TarjetaFrente frente={f} />)}
@@ -94,7 +95,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
           <p class="kicker">Lo último</p>
           <h2>Prensa &amp; formación</h2>
         </div>
-        <a href="/prensa/" class="btn btn--amarillo">Toda la prensa →</a>
+        <a href="/prensa/" class="btn btn--amarillo">Toda la prensa <Icon name="ph:arrow-right" /></a>
       </header>
       <div class="noticias__grid">
         {
@@ -121,7 +122,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
         No hace falta ser militante de estructura para aportar. Súmate como
         simpatizante, voluntaria o puente con tu comunidad. Te necesitamos.
       </p>
-      <a href="/contacto/" class="btn btn--amarillo cta-gigante__btn">Quiero sumarme →</a>
+      <a href="/contacto/" class="btn btn--amarillo cta-gigante__btn">Quiero sumarme <Icon name="ph:arrow-right" /></a>
     </div>
   </section>
 </Base>
@@ -133,7 +134,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
     background: var(--violeta);
     color: var(--papel);
     overflow: hidden;
-    padding-block: clamp(4rem, 10vw, 9rem);
+    padding-block: clamp(2.75rem, 6vw, 5rem);
     border-bottom: 3px solid var(--tinta);
   }
   .hero__olas {
@@ -265,7 +266,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   }
   .frentes-prev__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr));
     gap: 1.4rem;
   }
 
@@ -277,7 +278,7 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   }
   .noticias__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 1.4rem;
   }
 

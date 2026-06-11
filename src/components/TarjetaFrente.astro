@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { Frente } from "../data/sitio";
 interface Props {
   frente: Frente;
@@ -8,7 +9,9 @@ const { frente, detallado = false } = Astro.props;
 ---
 
 <article class="tf" style={`--c:${frente.color}`}>
-  <div class="tf__num" aria-hidden="true"></div>
+  <div class="tf__icono" aria-hidden="true">
+    <Icon name={frente.icono} />
+  </div>
   <h3 class="tf__nombre">{frente.nombre}</h3>
   <p class="tf__texto">{detallado ? frente.descripcion : frente.resumen}</p>
   {
@@ -38,6 +41,23 @@ const { frente, detallado = false } = Astro.props;
   .tf:hover {
     transform: translate(-3px, -3px);
     box-shadow: 8px 8px 0 var(--c);
+  }
+  .tf__icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1.1rem;
+    background: var(--c);
+    color: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .tf__icono svg {
+    width: 30px;
+    height: 30px;
   }
   .tf__nombre {
     color: var(--violeta);

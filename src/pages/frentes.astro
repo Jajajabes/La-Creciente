@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import TarjetaFrente from "../components/TarjetaFrente.astro";
 import Marquesina from "../components/Marquesina.astro";
@@ -33,7 +34,7 @@ import { frentes } from "../data/sitio";
           La Creciente está en construcción. Si tu causa o tu sector aún no tiene
           frente, escríbenos: lo armamos juntas.
         </p>
-        <a href="/contacto/" class="btn btn--amarillo">Proponé un frente →</a>
+        <a href="/contacto/" class="btn btn--amarillo">Proponé un frente <Icon name="ph:arrow-right" /></a>
       </article>
     </div>
   </section>
@@ -41,7 +42,7 @@ import { frentes } from "../data/sitio";
   <section class="franja-cta">
     <div class="contenedor franja-cta__inner">
       <h2>Cada frente es una puerta de entrada</h2>
-      <a href="/contacto/" class="btn btn--amarillo">Súmate a un frente →</a>
+      <a href="/contacto/" class="btn btn--amarillo">Súmate a un frente <Icon name="ph:hand-fist" /></a>
     </div>
   </section>
 </Base>
@@ -50,7 +51,7 @@ import { frentes } from "../data/sitio";
   .encab {
     background: var(--violeta);
     color: var(--papel);
-    padding-block: clamp(3.5rem, 8vw, 7rem);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
     border-bottom: 3px solid var(--tinta);
   }
   .encab__kicker {
@@ -71,7 +72,7 @@ import { frentes } from "../data/sitio";
 
   .frentes__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
   }
   .frente-sumar {

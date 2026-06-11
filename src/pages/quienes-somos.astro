@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import OlaDivisor from "../components/OlaDivisor.astro";
 import Marquesina from "../components/Marquesina.astro";
@@ -154,7 +155,7 @@ const hitos = [
           autonomía y la crítica.
         </p>
       </div>
-      <a href="/contacto/" class="btn btn--amarillo">Construí con nosotras →</a>
+      <a href="/contacto/" class="btn btn--amarillo">Construí con nosotras <Icon name="ph:arrow-right" /></a>
     </div>
   </section>
 </Base>
@@ -163,7 +164,7 @@ const hitos = [
   .encab {
     background: var(--violeta);
     color: var(--papel);
-    padding-block: clamp(3.5rem, 8vw, 7rem);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
     border-bottom: 3px solid var(--tinta);
   }
   .encab__kicker {
@@ -242,7 +243,7 @@ const hitos = [
   }
   .principios__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 1.4rem;
   }
   .principio {
@@ -279,7 +280,7 @@ const hitos = [
   }
   .linea-politica__cols {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 2rem;
     margin-bottom: 2.4rem;
   }

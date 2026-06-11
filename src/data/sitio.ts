@@ -2,6 +2,7 @@
  * Datos compartidos del sitio.
  * Editá acá la navegación, los frentes y las redes; se reflejan
  * en todo el sitio (header, footer, páginas).
+ * Los "icono" usan la librería Phosphor (ph:) o Simple Icons (simple-icons:).
  */
 
 export const sitio = {
@@ -13,10 +14,10 @@ export const sitio = {
   email: "contacto@lacreciente.org",
   ciudad: "Bogotá · Colombia",
   redes: [
-    { nombre: "Instagram", url: "https://instagram.com/", etiqueta: "@lacreciente" },
-    { nombre: "Twitter / X", url: "https://x.com/", etiqueta: "@lacreciente" },
-    { nombre: "TikTok", url: "https://tiktok.com/", etiqueta: "@lacreciente" },
-    { nombre: "YouTube", url: "https://youtube.com/", etiqueta: "La Creciente" },
+    { nombre: "Instagram", url: "https://instagram.com/", etiqueta: "@lacreciente", icono: "simple-icons:instagram" },
+    { nombre: "Twitter / X", url: "https://x.com/", etiqueta: "@lacreciente", icono: "simple-icons:x" },
+    { nombre: "TikTok", url: "https://tiktok.com/", etiqueta: "@lacreciente", icono: "simple-icons:tiktok" },
+    { nombre: "YouTube", url: "https://youtube.com/", etiqueta: "La Creciente", icono: "simple-icons:youtube" },
   ],
 };
 
@@ -34,6 +35,7 @@ export type Frente = {
   resumen: string;
   descripcion: string;
   color: string; // variable CSS
+  icono: string; // nombre de icono Phosphor (ph:...)
   consignas: string[];
 };
 
@@ -45,6 +47,7 @@ export const frentes: Frente[] = [
     descripcion:
       "Articulamos a estudiantes, jóvenes trabajadores y desempleados alrededor de la educación pública, el derecho al futuro y la rebeldía organizada. La universidad y el barrio como escuelas de lucha.",
     color: "var(--amarillo)",
+    icono: "ph:users-three",
     consignas: ["Educación pública y gratuita", "Cupo y vida digna", "Futuro para la juventud"],
   },
   {
@@ -54,6 +57,7 @@ export const frentes: Frente[] = [
     descripcion:
       "Acompañamos a quienes sostienen el país con su trabajo: sindicatos, informales, economía popular. Salario digno, estabilidad y un modelo productivo que no se construya sobre la espalda de la clase trabajadora.",
     color: "var(--rojo)",
+    icono: "ph:hammer",
     consignas: ["Salario y trabajo digno", "Reforma laboral", "Organización sindical"],
   },
   {
@@ -63,6 +67,7 @@ export const frentes: Frente[] = [
     descripcion:
       "Construimos un feminismo popular y antipatriarcal: contra las violencias, por los cuidados como asunto colectivo y por la autonomía de los cuerpos. No hay revolución sin nosotras.",
     color: "var(--magenta)",
+    icono: "ph:gender-female",
     consignas: ["Vida libre de violencias", "Cuidados colectivos", "Autonomía de los cuerpos"],
   },
   {
@@ -72,6 +77,7 @@ export const frentes: Frente[] = [
     descripcion:
       "Tejemos organización en barrios, veredas y territorios. Defensa del agua y la vida, soberanía alimentaria y poder local frente al despojo. El territorio se defiende habitándolo y organizándolo.",
     color: "var(--verde)",
+    icono: "ph:tree",
     consignas: ["Defensa del agua y la vida", "Soberanía alimentaria", "Poder local"],
   },
   {
@@ -81,6 +87,7 @@ export const frentes: Frente[] = [
     descripcion:
       "Impulsamos el proceso constituyente universitario y la defensa de la universidad pública. Cogobierno, autonomía y una Universidad Nacional al servicio del pueblo, no del mercado.",
     color: "var(--cian)",
+    icono: "ph:graduation-cap",
     consignas: ["Constituyente universitaria", "Autonomía y cogobierno", "Universidad para el pueblo"],
   },
 ];

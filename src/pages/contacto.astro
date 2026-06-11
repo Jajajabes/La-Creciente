@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import { sitio, frentes } from "../data/sitio";
 ---
@@ -98,7 +99,7 @@ import { sitio, frentes } from "../data/sitio";
           </label>
 
           <button type="submit" class="btn btn--violeta form__enviar">
-            Enviar y sumarme ✊
+            Enviar y sumarme <Icon name="ph:paper-plane-tilt" />
           </button>
           <p class="form__nota">* Campos obligatorios. Tus datos no se comparten con terceros.</p>
         </form>
@@ -108,16 +109,22 @@ import { sitio, frentes } from "../data/sitio";
       <aside class="lateral">
         <div class="lateral__bloque">
           <h3>Escribinos directo</h3>
-          <p>
+          <p class="lateral__dato">
+            <Icon name="ph:envelope-simple" class="ico" />
             <a href={`mailto:${sitio.email}`} class="lateral__mail">{sitio.email}</a>
           </p>
-          <p class="lateral__ciudad">{sitio.ciudad}</p>
+          <p class="lateral__dato lateral__ciudad">
+            <Icon name="ph:map-pin" class="ico" />
+            <span>{sitio.ciudad}</span>
+          </p>
           <ul class="lateral__redes">
             {
               sitio.redes.map((r) => (
                 <li>
-                  <a href={r.url} target="_blank" rel="noopener noreferrer">
-                    {r.nombre} <span>{r.etiqueta}</span>
+                  <a href={r.url} target="_blank" rel="noopener noreferrer" class="lateral__red">
+                    <Icon name={r.icono} class="ico" />
+                    <span class="lateral__red-nombre">{r.nombre}</span>
+                    <span>{r.etiqueta}</span>
                   </a>
                 </li>
               ))
@@ -137,7 +144,7 @@ import { sitio, frentes } from "../data/sitio";
             Mientras tanto, marcá <em>«Aportar económicamente»</em> en el
             formulario y te contactamos.
           </p>
-          <button class="btn btn--fantasma" disabled>Donar (pronto)</button>
+          <button class="btn btn--fantasma" disabled><Icon name="ph:hand-heart" /> Donar (pronto)</button>
         </div>
       </aside>
     </div>
@@ -172,7 +179,7 @@ import { sitio, frentes } from "../data/sitio";
   .encab {
     background: var(--violeta);
     color: var(--papel);
-    padding-block: clamp(3.5rem, 8vw, 7rem);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
     border-bottom: 3px solid var(--tinta);
   }
   .encab__kicker {
@@ -324,14 +331,25 @@ import { sitio, frentes } from "../data/sitio";
     font-size: 1.4rem;
     margin-bottom: 0.9rem;
   }
+  .lateral__dato {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
+  }
+  .lateral__dato .ico {
+    color: var(--violeta);
+    width: 1.2em;
+    height: 1.2em;
+  }
   .lateral__mail {
     font-weight: 700;
     color: var(--violeta);
     font-size: 1.05rem;
+    text-decoration: none;
   }
   .lateral__ciudad {
     color: var(--tenue);
-    margin-top: 0.2rem;
+    margin-top: 0.45rem;
   }
   .lateral__redes {
     list-style: none;
@@ -340,17 +358,27 @@ import { sitio, frentes } from "../data/sitio";
     flex-direction: column;
     gap: 0.5rem;
   }
-  .lateral__redes a {
+  .lateral__red {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
     text-decoration: none;
     color: var(--tinta);
+  }
+  .lateral__red .ico {
+    color: var(--violeta);
+    width: 1.2em;
+    height: 1.2em;
+  }
+  .lateral__red-nombre {
     font-weight: 600;
   }
-  .lateral__redes a span {
+  .lateral__redes a span:last-child {
     color: var(--tenue);
     font-weight: 400;
     font-size: 0.9rem;
   }
-  .lateral__redes a:hover {
+  .lateral__red:hover {
     color: var(--violeta);
   }
 

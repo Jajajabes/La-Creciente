@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 import Base from "../../layouts/Base.astro";
 import TarjetaPrensa from "../../components/TarjetaPrensa.astro";
 
@@ -78,7 +79,7 @@ const filtros = [
           programáticas y materiales históricos en una biblioteca abierta.
           Pronto disponible para descarga.
         </p>
-        <a href="/contacto/" class="btn btn--amarillo">Avísame cuando esté →</a>
+        <a href="/contacto/" class="btn btn--amarillo">Avísame cuando esté <Icon name="ph:bell-ringing" /></a>
       </div>
       <div class="biblioteca__sello" aria-hidden="true">
         <span>Próximamente</span>
@@ -111,7 +112,7 @@ const filtros = [
   .encab {
     background: var(--violeta);
     color: var(--papel);
-    padding-block: clamp(3.5rem, 8vw, 7rem);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
     border-bottom: 3px solid var(--tinta);
   }
   .encab__kicker {
@@ -160,7 +161,7 @@ const filtros = [
 
   .prensa__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
   }
   .vacio {

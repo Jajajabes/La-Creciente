@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 interface Props {
   url: string;
   titulo: string;
@@ -30,7 +31,10 @@ const fechaTxt = fecha.toLocaleDateString("es-CO", {
     </div>
     <h3 class="tp__titulo">{titulo}</h3>
     <p class="tp__resumen">{resumen}</p>
-    <span class="tp__mas">Leer {autor ? `· ${autor}` : ""} →</span>
+    <span class="tp__mas">
+      <span>Leer{autor ? ` · ${autor}` : ""}</span>
+      <Icon name="ph:arrow-right" />
+    </span>
   </a>
 </article>
 
@@ -89,6 +93,10 @@ const fechaTxt = fecha.toLocaleDateString("es-CO", {
     flex: 1;
   }
   .tp__mas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6ch;
     font-family: var(--display);
     text-transform: uppercase;
     font-weight: 700;
@@ -96,5 +104,13 @@ const fechaTxt = fecha.toLocaleDateString("es-CO", {
     color: var(--tp-color);
     border-top: 2px solid var(--papel-3);
     padding-top: 0.9rem;
+  }
+  .tp__mas svg {
+    width: 1.1em;
+    height: 1.1em;
+    transition: transform 0.16s ease;
+  }
+  .tp:hover .tp__mas svg {
+    transform: translateX(4px);
   }
 </style>
