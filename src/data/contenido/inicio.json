@@ -4,7 +4,7 @@
     "tituloDestacado": "Crece",
     "titulo": "el poder de la gente",
     "manifiesto": "Somos La Creciente: estudiantes, trabajadoras y trabajadores, feministas y pueblo organizado. Crecemos como el río que no pide permiso: gota a gota, hasta desbordar la injusticia.",
-    "botonPrimario": "Súmate / Militá",
+    "botonPrimario": "Sumarse / Militar",
     "botonSecundario": "Conócenos"
   },
   "manifiesto": {
@@ -17,8 +17,16 @@
     "fraseDestacada": "La emancipación será obra de las y los de abajo, o no será.",
     "boton": "Lee la línea política"
   },
-  "frentes": { "kicker": "Líneas de trabajo", "titulo": "Nuestros frentes", "boton": "Ver todos" },
-  "noticias": { "kicker": "Lo último", "titulo": "Prensa y formación", "boton": "Toda la prensa" },
+  "frentes": {
+    "kicker": "Líneas de trabajo",
+    "titulo": "Nuestros frentes",
+    "boton": "Ver todos"
+  },
+  "noticias": {
+    "kicker": "Lo último",
+    "titulo": "Prensa y formación",
+    "boton": "Toda la prensa"
+  },
   "cta": {
     "kicker": "No mires desde la orilla",
     "titulo": "Súmate a la marea",
