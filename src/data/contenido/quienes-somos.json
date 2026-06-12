@@ -1,0 +1,52 @@
+{
+  "encab": { "kicker": "Quiénes somos", "titulo": "Nuestro horizonte", "bajada": "Nuestro horizonte, principios y trabajo político. ¿Para dónde vamos y para qué existe La Creciente?" },
+  "marquesina": ["Marxismo", "Feminismo", "Antirracismo", "Pensamiento descolonial", "Socialismo renovado"],
+  "horizonte": {
+    "kicker": "Horizonte",
+    "titulo": "Para dónde vamos",
+    "lead": "Queremos contribuir a la construcción de un proyecto político-social que genere consenso ideológico alrededor de un socialismo renovado, que recoja las banderas del marxismo, el feminismo, el antirracismo y el pensamiento descolonial latinoamericano, entre otros.",
+    "parrafos": [
+      "El orden social capitalista, colonial y patriarcal ha generado una crisis civilizatoria que amenaza la vida en la tierra. Ese orden no es natural: fue construido por fuerzas sociales e históricas, lo que implica que podemos transformarlo.",
+      "Dentro de ese contexto, La Creciente existe para proponer y construir un nuevo socialismo que nos ayude a superar esa crisis."
+    ]
+  },
+  "hitos": [
+    { "anio": "2023", "texto": "Confluyen colectivos estudiantiles, populares, feministas y territoriales." },
+    { "anio": "2024", "texto": "Primer seminario político. Publicamos nuestra Declaración Política e impulsamos el proceso constituyente en la UNAL." },
+    { "anio": "2025", "texto": "Discusión de nuestros estatutos y consolidación organizativa." },
+    { "anio": "2026", "texto": "Damos el paso a la presencia pública con nuestra web." }
+  ],
+  "renovado": {
+    "kicker": "Un socialismo renovado",
+    "titulo": "Cerrar viejos debates",
+    "debates": [
+      "Pensar más allá de la economía de libre mercado y de la economía planificada.",
+      "Superar la fragmentación y la «priorización» de las luchas políticas.",
+      "Quebrar las jerarquías entre saberes y posiciones sociales.",
+      "Repensar la articulación entre lo local y lo global."
+    ],
+    "cierre": "El cambio social pasa por la conquista del poder político, el control del Estado y una radicalización de la democracia que promueva la movilización social continua, así como por una transformación del sentido común."
+  },
+  "principios": { "kicker": "Cómo actuamos", "titulo": "Nuestros principios", "boton": "Ver ideario y estatutos" },
+  "ejes": {
+    "kicker": "Trabajo político",
+    "titulo": "Nuestros ejes",
+    "items": [
+      { "texto": "Construcción y acumulación política y organizativa, territorial y sectorial.", "icono": "ph:stack" },
+      { "texto": "Participación en la lucha institucional y la disputa del poder del Estado.", "icono": "ph:bank" },
+      { "texto": "Articulación con otros parches y organizaciones.", "icono": "ph:handshake" },
+      { "texto": "Una nueva hegemonía ideológica desde el pensamiento crítico.", "icono": "ph:lightbulb" },
+      { "texto": "Cambios en las condiciones materiales, hacia adentro y hacia afuera de la colectividad.", "icono": "ph:buildings" }
+    ]
+  },
+  "proyeccion": {
+    "kicker": "Nuestra proyección política",
+    "titulo": "Hacia dónde disputamos",
+    "parrafos": [
+      "Trabajamos en el campo de la izquierda colombiana y los sectores alternativos, consolidando proyectos de acumulación política y organizativa anclados a territorios y luchas: la feminista, la sindical, la estudiantil, la agraria y la ambiental.",
+      "La disputa la damos dentro y fuera de las estructuras del Estado, manteniendo vivo el movimiento social y popular. Las disputas electorales son solo un escenario estratégico temporal en nuestra apuesta de largo plazo por un orden social distinto."
+    ],
+    "lema": "«Crece el poder de la gente»",
+    "boton": "Construí con nosotras"
+  }
+}

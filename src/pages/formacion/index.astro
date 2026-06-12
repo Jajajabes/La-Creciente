@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import Base from "../../layouts/Base.astro";
+import formacionData from "../../data/contenido/formacion.json";
 
 const docs = (await getCollection("documentos")).sort(
   (a, b) => a.data.orden - b.data.orden || a.data.titulo.localeCompare(b.data.titulo)
@@ -29,13 +30,9 @@ const esExterno = (url?: string) => !!url && /^https?:\/\//.test(url);
 >
   <section class="encab">
     <div class="contenedor">
-      <p class="kicker encab__kicker">Escuela de formación</p>
-      <h1 class="encab__titulo">Biblioteca<br />de formación</h1>
-      <p class="encab__bajada">
-        La indignación no basta: para transformar hace falta estudiar. Reunimos
-        materiales propios y lecturas recomendadas para formar pueblo crítico y
-        organizado.
-      </p>
+      <p class="kicker encab__kicker">{formacionData.encab.kicker}</p>
+      <h1 class="encab__titulo">{formacionData.encab.titulo}</h1>
+      <p class="encab__bajada">{formacionData.encab.bajada}</p>
     </div>
   </section>
 
@@ -91,8 +88,7 @@ const esExterno = (url?: string) => !!url && /^https?:\/\//.test(url);
 
       <p class="nota">
         <Icon name="ph:info" class="ico" />
-        ¿Buscás un material que no está disponible? Escribinos a
-        <a href="/contacto/">contacto</a> y te lo compartimos.
+        {formacionData.nota} <a href="/contacto/">Contacto</a>
       </p>
     </div>
   </section>

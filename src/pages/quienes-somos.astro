@@ -4,28 +4,7 @@ import Base from "../layouts/Base.astro";
 import OlaDivisor from "../components/OlaDivisor.astro";
 import Marquesina from "../components/Marquesina.astro";
 import { principios } from "../data/sitio";
-
-const debates = [
-  "Pensar más allá de la economía de libre mercado y de la economía planificada.",
-  "Superar la fragmentación y la «priorización» de las luchas políticas.",
-  "Quebrar las jerarquías entre saberes y posiciones sociales.",
-  "Repensar la articulación entre lo local y lo global.",
-];
-
-const ejes = [
-  { texto: "Construcción y acumulación política y organizativa, territorial y sectorial.", icono: "ph:stack" },
-  { texto: "Participación en la lucha institucional y la disputa del poder del Estado.", icono: "ph:bank" },
-  { texto: "Articulación con otros parches y organizaciones.", icono: "ph:handshake" },
-  { texto: "Una nueva hegemonía ideológica desde el pensamiento crítico.", icono: "ph:lightbulb" },
-  { texto: "Cambios en las condiciones materiales, hacia adentro y hacia afuera de la colectividad.", icono: "ph:buildings" },
-];
-
-const hitos = [
-  { anio: "2023", texto: "Confluyen colectivos estudiantiles, populares, feministas y territoriales." },
-  { anio: "2024", texto: "Primer seminario político. Publicamos nuestra Declaración Política e impulsamos el proceso constituyente en la UNAL." },
-  { anio: "2025", texto: "Discusión de nuestros estatutos y consolidación organizativa." },
-  { anio: "2026", texto: "Damos el paso a la presencia pública con nuestra web." },
-];
+import qs from "../data/contenido/quienes-somos.json";
 ---
 
 <Base
@@ -34,45 +13,26 @@ const hitos = [
 >
   <section class="encab">
     <div class="contenedor">
-      <p class="kicker encab__kicker">Quiénes somos</p>
-      <h1 class="encab__titulo">Nuestro<br />horizonte</h1>
-      <p class="encab__bajada">
-        Nuestro horizonte, principios y trabajo político. ¿Para dónde vamos y
-        para qué existe La Creciente?
-      </p>
+      <p class="kicker encab__kicker">{qs.encab.kicker}</p>
+      <h1 class="encab__titulo">{qs.encab.titulo}</h1>
+      <p class="encab__bajada">{qs.encab.bajada}</p>
     </div>
   </section>
 
-  <Marquesina
-    items={["Marxismo", "Feminismo", "Antirracismo", "Pensamiento descolonial", "Socialismo renovado"]}
-  />
+  <Marquesina items={qs.marquesina} />
 
   <!-- Horizonte / colectividad -->
   <section class="seccion">
     <div class="contenedor horizonte__grid">
       <div class="horizonte__texto revelar">
-        <p class="kicker">Horizonte</p>
-        <h2>Para dónde vamos</h2>
-        <p class="horizonte__lead">
-          Queremos contribuir a la construcción de un proyecto político-social
-          que genere consenso ideológico alrededor de un <strong>socialismo
-          renovado</strong>, que recoja las banderas del marxismo, el feminismo,
-          el antirracismo y el pensamiento descolonial latinoamericano, entre
-          otros.
-        </p>
-        <p>
-          El orden social capitalista, colonial y patriarcal ha generado una
-          crisis civilizatoria que amenaza la vida en la tierra. Ese orden no es
-          natural: fue construido por fuerzas sociales e históricas, <mark class="marca-resaltada">lo que implica que podemos transformarlo.</mark>
-        </p>
-        <p>
-          Dentro de ese contexto, La Creciente existe para proponer y construir
-          un nuevo socialismo que nos ayude a superar esa crisis.
-        </p>
+        <p class="kicker">{qs.horizonte.kicker}</p>
+        <h2>{qs.horizonte.titulo}</h2>
+        <p class="horizonte__lead">{qs.horizonte.lead}</p>
+        {qs.horizonte.parrafos.map((p) => <p>{p}</p>)}
       </div>
       <ol class="linea-tiempo" aria-label="Hitos de La Creciente">
         {
-          hitos.map((h) => (
+          qs.hitos.map((h) => (
             <li class="linea-tiempo__item revelar">
               <span class="linea-tiempo__anio">{h.anio}</span>
               <p>{h.texto}</p>
@@ -88,13 +48,13 @@ const hitos = [
     <div class="contenedor">
       <header class="cab-seccion cab-seccion--claro">
         <div>
-          <p class="kicker">Un socialismo renovado</p>
-          <h2>Cerrar viejos debates</h2>
+          <p class="kicker">{qs.renovado.kicker}</p>
+          <h2>{qs.renovado.titulo}</h2>
         </div>
       </header>
       <div class="renovado__grid">
         {
-          debates.map((d, i) => (
+          qs.renovado.debates.map((d, i) => (
             <article class="debate">
               <span class="debate__num">{String(i + 1).padStart(2, "0")}</span>
               <p>{d}</p>
@@ -102,12 +62,7 @@ const hitos = [
           ))
         }
       </div>
-      <p class="renovado__cierre">
-        El cambio social pasa por la conquista del poder político, el control del
-        Estado y una <strong>radicalización de la democracia</strong> que
-        promueva la movilización social continua, así como por una transformación
-        del sentido común.
-      </p>
+      <p class="renovado__cierre">{qs.renovado.cierre}</p>
     </div>
   </section>
 
@@ -116,8 +71,8 @@ const hitos = [
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">Cómo actuamos</p>
-          <h2>Nuestros principios</h2>
+          <p class="kicker">{qs.principios.kicker}</p>
+          <h2>{qs.principios.titulo}</h2>
         </div>
       </header>
       <div class="principios__grid">
@@ -132,7 +87,7 @@ const hitos = [
         }
       </div>
       <div class="principios__cta">
-        <a href="/quienes-somos/estatutos/" class="btn btn--violeta">Ver ideario y estatutos <Icon name="ph:arrow-right" /></a>
+        <a href="/quienes-somos/estatutos/" class="btn btn--violeta">{qs.principios.boton} <Icon name="ph:arrow-right" /></a>
       </div>
     </div>
   </section>
@@ -142,13 +97,13 @@ const hitos = [
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">Trabajo político</p>
-          <h2>Nuestros ejes</h2>
+          <p class="kicker">{qs.ejes.kicker}</p>
+          <h2>{qs.ejes.titulo}</h2>
         </div>
       </header>
       <div class="ejes__grid">
         {
-          ejes.map((e) => (
+          qs.ejes.items.map((e) => (
             <article class="eje">
               <div class="eje__icono"><Icon name={e.icono} /></div>
               <p>{e.texto}</p>
@@ -164,24 +119,13 @@ const hitos = [
   <!-- Proyección política -->
   <section class="proyeccion">
     <div class="contenedor proyeccion__inner">
-      <p class="kicker proyeccion__kicker">Nuestra proyección política</p>
-      <h2>Hacia dónde disputamos</h2>
+      <p class="kicker proyeccion__kicker">{qs.proyeccion.kicker}</p>
+      <h2>{qs.proyeccion.titulo}</h2>
       <div class="proyeccion__cols">
-        <p>
-          Trabajamos en el campo de la izquierda colombiana y los sectores
-          alternativos, consolidando proyectos de <strong>acumulación política y
-          organizativa</strong> anclados a territorios y luchas: la feminista, la
-          sindical, la estudiantil, la agraria y la ambiental.
-        </p>
-        <p>
-          La disputa la damos dentro y fuera de las estructuras del Estado,
-          manteniendo vivo el movimiento social y popular. Las disputas
-          electorales son solo <strong>un escenario estratégico temporal</strong>
-          en nuestra apuesta de largo plazo por un orden social distinto.
-        </p>
+        {qs.proyeccion.parrafos.map((p) => <p>{p}</p>)}
       </div>
-      <p class="proyeccion__lema">«Crece el poder de la gente»</p>
-      <a href="/contacto/" class="btn btn--amarillo">Construí con nosotras <Icon name="ph:arrow-right" /></a>
+      <p class="proyeccion__lema">{qs.proyeccion.lema}</p>
+      <a href="/contacto/" class="btn btn--amarillo">{qs.proyeccion.boton} <Icon name="ph:arrow-right" /></a>
     </div>
   </section>
 </Base>
@@ -324,9 +268,6 @@ const hitos = [
     line-height: 1.45;
     max-width: 60ch;
   }
-  .renovado__cierre strong {
-    color: var(--amarillo);
-  }
 
   /* Principios */
   .principios {
@@ -418,9 +359,6 @@ const hitos = [
     font-size: 1.1rem;
     line-height: 1.6;
     color: color-mix(in srgb, var(--papel) 92%, transparent);
-  }
-  .proyeccion__cols strong {
-    color: var(--amarillo);
   }
   .proyeccion__lema {
     font-family: var(--display);

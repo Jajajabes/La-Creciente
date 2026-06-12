@@ -1,0 +1,13 @@
+{
+  "nombre": "La Creciente",
+  "lema": "Crece el poder de la gente",
+  "descripcion": "Organización política de izquierda. Construimos poder popular desde el trabajo, los feminismos, lo estudiantil y el territorio.",
+  "email": "contacto@lacreciente.org",
+  "ciudad": "Bogotá · Colombia",
+  "redes": [
+    { "nombre": "Instagram", "url": "https://instagram.com/lacreciente1", "etiqueta": "@lacreciente1", "icono": "simple-icons:instagram" },
+    { "nombre": "Facebook", "url": "https://facebook.com/lacrecientee", "etiqueta": "@lacrecientee", "icono": "simple-icons:facebook" },
+    { "nombre": "Twitter / X", "url": "https://x.com/lacreciente1", "etiqueta": "@lacreciente1", "icono": "simple-icons:x" },
+    { "nombre": "TikTok", "url": "https://tiktok.com/@la_creciente", "etiqueta": "@la_creciente", "icono": "simple-icons:tiktok" }
+  ]
+}

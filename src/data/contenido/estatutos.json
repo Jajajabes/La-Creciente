@@ -1,0 +1,31 @@
+{
+  "encab": { "volver": "Quiénes somos", "kicker": "Ideario y estatutos", "titulo": "Las reglas de la marea", "bajada": "Los estatutos son el acuerdo colectivo sobre cómo nos organizamos, decidimos y nos cuidamos. Resumen público de nuestros principios y estructura." },
+  "principios": { "kicker": "Principios rectores", "titulo": "Cómo nos regimos", "intro": "Antes que un reglamento, los estatutos son una apuesta ética y política. Estos son los principios que ordenan nuestra vida interna:" },
+  "estructura": {
+    "kicker": "Estructura",
+    "titulo": "Cómo nos organizamos",
+    "items": [
+      { "nombre": "Asamblea", "texto": "Máximo órgano de decisión. Define la línea política y elige a la dirección. Una militante, un voto.", "icono": "ph:users-three", "color": "var(--amarillo)" },
+      { "nombre": "Dirección colectiva", "texto": "Conduce la organización entre asambleas, con mandato, paridad y rendición de cuentas. No hay jefaturas: hay vocerías.", "icono": "ph:compass", "color": "var(--violeta)" },
+      { "nombre": "Círculos de base", "texto": "La célula viva de La Creciente: grupos territoriales o sectoriales donde se milita, se estudia y se decide desde abajo.", "icono": "ph:circles-three", "color": "var(--verde)" },
+      { "nombre": "Frentes", "texto": "Articulan el trabajo por sector —trabajo y sindicalismo, feminismos, estudiantil y UNAL, agrario y ambiental— con autonomía y coordinación.", "icono": "ph:flag-banner", "color": "var(--magenta)" }
+    ]
+  },
+  "afiliacion": {
+    "kicker": "Afiliación",
+    "titulo": "Derechos y deberes",
+    "derechos": [
+      "Elegir y ser electa o electo en los órganos.",
+      "Deliberar, disentir y proponer con libertad.",
+      "Acceder a la información de la organización.",
+      "Recibir formación y acompañamiento político."
+    ],
+    "deberes": [
+      "Participar en un círculo de base y en la vida de la organización.",
+      "Formarse y aportar a la formación de otras y otros.",
+      "Defender los acuerdos colectivos y la unidad de acción.",
+      "Aportar según las posibilidades de cada quien."
+    ]
+  },
+  "descarga": { "titulo": "Documento completo", "texto": "La versión integral de nuestros estatutos está en proceso de discusión y ratificación. Pronto disponible para descarga.", "botonDescarga": "Estatutos (en ratificación)", "botonCta": "Quiero militar" }
+}

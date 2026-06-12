@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import TarjetaFrente from "../components/TarjetaFrente.astro";
 import Marquesina from "../components/Marquesina.astro";
 import { frentes } from "../data/sitio";
+import frentesPagina from "../data/contenido/frentes.json";
 ---
 
 <Base
@@ -12,13 +13,9 @@ import { frentes } from "../data/sitio";
 >
   <section class="encab">
     <div class="contenedor">
-      <p class="kicker encab__kicker">Líneas de trabajo</p>
-      <h1 class="encab__titulo">Frentes<br />de lucha</h1>
-      <p class="encab__bajada">
-        La marea crece por muchos cauces. Cada frente organiza un sector de
-        nuestra sociedad alrededor de sus luchas concretas, sin perder de vista
-        el proyecto común. Encuentra el tuyo.
-      </p>
+      <p class="kicker encab__kicker">{frentesPagina.encab.kicker}</p>
+      <h1 class="encab__titulo">{frentesPagina.encab.titulo}</h1>
+      <p class="encab__bajada">{frentesPagina.encab.bajada}</p>
     </div>
   </section>
 
@@ -29,20 +26,17 @@ import { frentes } from "../data/sitio";
       {frentes.map((f) => <TarjetaFrente frente={f} detallado />)}
 
       <article class="frente-sumar">
-        <h3>¿Falta tu lucha?</h3>
-        <p>
-          La Creciente está en construcción. Si tu causa o tu sector aún no tiene
-          frente, escríbenos: lo armamos juntas.
-        </p>
-        <a href="/contacto/" class="btn btn--amarillo">Proponé un frente <Icon name="ph:arrow-right" /></a>
+        <h3>{frentesPagina.faltaLucha.titulo}</h3>
+        <p>{frentesPagina.faltaLucha.texto}</p>
+        <a href="/contacto/" class="btn btn--amarillo">{frentesPagina.faltaLucha.boton} <Icon name="ph:arrow-right" /></a>
       </article>
     </div>
   </section>
 
   <section class="franja-cta">
     <div class="contenedor franja-cta__inner">
-      <h2>Cada frente es una puerta de entrada</h2>
-      <a href="/contacto/" class="btn btn--amarillo">Súmate a un frente <Icon name="ph:hand-fist" /></a>
+      <h2>{frentesPagina.franja.titulo}</h2>
+      <a href="/contacto/" class="btn btn--amarillo">{frentesPagina.franja.boton} <Icon name="ph:hand-fist" /></a>
     </div>
   </section>
 </Base>

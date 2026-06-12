@@ -1,0 +1,399 @@
+# ============================================================
+#  Panel de administración de La Creciente (Sveltia CMS)
+#  Todo el contenido del sitio es editable desde aquí.
+#  Los campos técnicos (colores, iconos, identificadores) están
+#  ocultos para mantenerlo simple.
+# ============================================================
+
+backend:
+  name: github
+  repo: Jajajabes/La-Creciente
+  branch: main
+
+# Para probar el panel en tu computador con el sitio local:
+#   npx @sveltia/cms-proxy-server   (en otra terminal)
+local_backend: true
+
+# Flujo de revisión: los cambios quedan como propuesta antes de publicarse.
+publish_mode: editorial_workflow
+
+# Carpeta para imágenes/archivos que se suban desde el panel.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: es
+
+collections:
+  # ===================== AJUSTES =====================
+  - name: ajustes
+    label: "Ajustes del sitio"
+    description: "Nombre, lema, contacto y redes sociales."
+    icon: settings
+    files:
+      - name: general
+        label: "General y redes"
+        file: "src/data/contenido/ajustes.json"
+        fields:
+          - { label: "Nombre", name: nombre, widget: string }
+          - { label: "Lema", name: lema, widget: string }
+          - { label: "Descripción (para buscadores)", name: descripcion, widget: text }
+          - { label: "Correo de contacto", name: email, widget: string }
+          - { label: "Ciudad", name: ciudad, widget: string }
+          - label: "Redes sociales"
+            name: redes
+            widget: list
+            label_singular: "Red social"
+            summary: "{{fields.nombre}} — {{fields.etiqueta}}"
+            fields:
+              - { label: "Nombre", name: nombre, widget: string }
+              - { label: "Enlace (URL)", name: url, widget: string }
+              - { label: "Usuario visible", name: etiqueta, widget: string }
+              - { label: "Icono", name: icono, widget: hidden }
+
+  # ===================== PÁGINAS =====================
+  - name: paginas
+    label: "Páginas"
+    description: "Los textos de cada sección del sitio."
+    icon: description
+    files:
+      # ---------- INICIO ----------
+      - name: inicio
+        label: "Inicio"
+        file: "src/data/contenido/inicio.json"
+        fields:
+          - label: "Portada (hero)"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Etiqueta superior", name: kicker, widget: string }
+              - { label: "Palabra destacada del título", name: tituloDestacado, widget: string }
+              - { label: "Resto del título", name: titulo, widget: string }
+              - { label: "Texto de presentación", name: manifiesto, widget: text }
+              - { label: "Botón principal", name: botonPrimario, widget: string }
+              - { label: "Botón secundario", name: botonSecundario, widget: string }
+          - label: "Manifiesto"
+            name: manifiesto
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Frase principal", name: lead, widget: text }
+              - { label: "Párrafos", name: parrafos, widget: list, hint: "Un elemento por párrafo." }
+              - { label: "Frase resaltada", name: fraseDestacada, widget: text }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Sección Frentes (títulos)"
+            name: frentes
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Sección Prensa (títulos)"
+            name: noticias
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Llamado final (Súmate)"
+            name: cta
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Texto", name: texto, widget: text }
+              - { label: "Botón", name: boton, widget: string }
+
+      # ---------- QUIÉNES SOMOS ----------
+      - name: quienes-somos
+        label: "Quiénes Somos"
+        file: "src/data/contenido/quienes-somos.json"
+        fields:
+          - label: "Encabezado"
+            name: encab
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Bajada", name: bajada, widget: text }
+          - { label: "Cinta de consignas", name: marquesina, widget: list }
+          - label: "Horizonte"
+            name: horizonte
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Frase principal", name: lead, widget: text }
+              - { label: "Párrafos", name: parrafos, widget: list }
+          - label: "Línea de tiempo"
+            name: hitos
+            widget: list
+            summary: "{{fields.anio}}"
+            fields:
+              - { label: "Año", name: anio, widget: string }
+              - { label: "Texto", name: texto, widget: text }
+          - label: "Socialismo renovado"
+            name: renovado
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Debates", name: debates, widget: list }
+              - { label: "Cierre", name: cierre, widget: text }
+          - label: "Principios (títulos)"
+            name: principios
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Ejes de trabajo"
+            name: ejes
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - label: "Ejes"
+                name: items
+                widget: list
+                summary: "{{fields.texto}}"
+                fields:
+                  - { label: "Texto", name: texto, widget: text }
+                  - { label: "Icono", name: icono, widget: hidden }
+          - label: "Proyección política"
+            name: proyeccion
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Párrafos", name: parrafos, widget: list }
+              - { label: "Lema", name: lema, widget: string }
+              - { label: "Botón", name: boton, widget: string }
+
+      # ---------- FRENTES ----------
+      - name: frentes
+        label: "Frentes"
+        file: "src/data/contenido/frentes.json"
+        fields:
+          - label: "Encabezado"
+            name: encab
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Bajada", name: bajada, widget: text }
+          - label: "Bloque «¿Falta tu lucha?»"
+            name: faltaLucha
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Texto", name: texto, widget: text }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Franja final"
+            name: franja
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Botón", name: boton, widget: string }
+          - label: "Frentes"
+            name: items
+            widget: list
+            label_singular: "Frente"
+            summary: "{{fields.nombre}}"
+            fields:
+              - { label: "Nombre", name: nombre, widget: string }
+              - { label: "Resumen corto", name: resumen, widget: string }
+              - { label: "Descripción", name: descripcion, widget: text }
+              - { label: "Consignas", name: consignas, widget: list }
+              - { label: "Identificador", name: slug, widget: hidden }
+              - { label: "Color", name: color, widget: hidden }
+              - { label: "Icono", name: icono, widget: hidden }
+
+      # ---------- PRINCIPIOS ----------
+      - name: principios
+        label: "Principios"
+        file: "src/data/contenido/principios.json"
+        fields:
+          - label: "Principios"
+            name: items
+            widget: list
+            label_singular: "Principio"
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Texto", name: texto, widget: text }
+              - { label: "Color", name: color, widget: hidden }
+
+      # ---------- IDEARIO Y ESTATUTOS ----------
+      - name: estatutos
+        label: "Ideario y Estatutos"
+        file: "src/data/contenido/estatutos.json"
+        fields:
+          - label: "Encabezado"
+            name: encab
+            widget: object
+            fields:
+              - { label: "Enlace volver", name: volver, widget: string }
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Bajada", name: bajada, widget: text }
+          - label: "Principios (intro)"
+            name: principios
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Introducción", name: intro, widget: text }
+          - label: "Estructura"
+            name: estructura
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - label: "Órganos"
+                name: items
+                widget: list
+                summary: "{{fields.nombre}}"
+                fields:
+                  - { label: "Nombre", name: nombre, widget: string }
+                  - { label: "Texto", name: texto, widget: text }
+                  - { label: "Icono", name: icono, widget: hidden }
+                  - { label: "Color", name: color, widget: hidden }
+          - label: "Afiliación"
+            name: afiliacion
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Derechos", name: derechos, widget: list }
+              - { label: "Deberes", name: deberes, widget: list }
+          - label: "Descarga"
+            name: descarga
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Texto", name: texto, widget: text }
+              - { label: "Botón descarga", name: botonDescarga, widget: string }
+              - { label: "Botón sumarse", name: botonCta, widget: string }
+
+      # ---------- FORMACIÓN ----------
+      - name: formacion
+        label: "Formación (textos)"
+        file: "src/data/contenido/formacion.json"
+        fields:
+          - label: "Encabezado"
+            name: encab
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Bajada", name: bajada, widget: text }
+          - { label: "Nota al pie", name: nota, widget: text }
+
+      # ---------- CONTACTO ----------
+      - name: contacto
+        label: "Contacto"
+        file: "src/data/contenido/contacto.json"
+        fields:
+          - label: "Encabezado"
+            name: encab
+            widget: object
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Bajada", name: bajada, widget: text }
+          - label: "Formulario"
+            name: form
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Botón enviar", name: boton, widget: string }
+          - label: "Lateral (contacto y donaciones)"
+            name: lateral
+            widget: object
+            fields:
+              - { label: "Título contacto", name: tituloContacto, widget: string }
+              - { label: "Etiqueta donaciones", name: donacionBadge, widget: string }
+              - { label: "Título donaciones", name: donacionTitulo, widget: string }
+              - { label: "Texto donaciones", name: donacionTexto, widget: text }
+              - { label: "Nota donaciones", name: donacionNota, widget: text }
+              - { label: "Botón donar", name: donacionBoton, widget: string }
+          - label: "Política de datos"
+            name: datos
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Etiqueta", name: kicker, widget: string }
+              - { label: "Título", name: titulo, widget: string }
+              - { label: "Párrafo", name: parrafo, widget: text }
+              - { label: "Puntos", name: puntos, widget: list }
+
+  # ===================== PRENSA =====================
+  - name: prensa
+    label: "Prensa"
+    label_singular: "Publicación"
+    description: "Comunicados, artículos de opinión y formación."
+    icon: campaign
+    folder: "src/content/prensa"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    sortable_fields: [fecha, titulo]
+    fields:
+      - { label: "Título", name: titulo, widget: string }
+      - { label: "Fecha", name: fecha, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Resumen", name: resumen, widget: text }
+      - label: "Tipo"
+        name: tipo
+        widget: select
+        default: opinion
+        options:
+          - { label: "Comunicado", value: comunicado }
+          - { label: "Opinión", value: opinion }
+          - { label: "Formación", value: formacion }
+      - { label: "Autor", name: autor, widget: string, default: "La Creciente" }
+      - { label: "Frente (opcional)", name: frente, widget: string, required: false }
+      - { label: "Destacado", name: destacado, widget: boolean, default: false }
+      - { label: "Borrador (no se publica)", name: borrador, widget: boolean, default: false }
+      - { label: "Contenido", name: body, widget: markdown }
+
+  # ===================== BIBLIOTECA =====================
+  - name: documentos
+    label: "Biblioteca"
+    label_singular: "Documento"
+    description: "Materiales de formación y lecturas."
+    icon: menu_book
+    folder: "src/content/documentos"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: "Título", name: titulo, widget: string }
+      - { label: "Resumen", name: resumen, widget: text }
+      - label: "Categoría"
+        name: categoria
+        widget: select
+        options:
+          - { label: "Inducción", value: induccion }
+          - { label: "Feminismos", value: feminismos }
+          - { label: "Teoría / Marxismo", value: marxismo }
+          - { label: "Universidad", value: universidad }
+          - { label: "Organización", value: organizacion }
+      - label: "Origen"
+        name: origen
+        widget: select
+        default: "Recomendado"
+        options: ["La Creciente", "Externo", "Recomendado"]
+      - { label: "Formato", name: formato, widget: string, default: "PDF" }
+      - { label: "Enlace de descarga (opcional)", name: enlace, widget: string, required: false, hint: "URL externa o /documentos/archivo.pdf. Vacío = «Próximamente»." }
+      - { label: "Autor", name: autor, widget: string, required: false }
+      - { label: "Orden", name: orden, widget: number, default: 0, value_type: int }
+      - { label: "Destacado", name: destacado, widget: boolean, default: false }

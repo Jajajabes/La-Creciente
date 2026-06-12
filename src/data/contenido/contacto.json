@@ -1,0 +1,22 @@
+{
+  "encab": { "kicker": "Súmate / Militá", "titulo": "Hacé crecer la marea", "bajada": "No hace falta pertenecer a la estructura formal para aportar. Dejanos tus datos y el equipo te contacta para encontrar tu lugar en la lucha." },
+  "form": { "titulo": "Quiero sumarme", "boton": "Enviar y sumarme" },
+  "lateral": {
+    "tituloContacto": "Escribinos directo",
+    "donacionBadge": "Próximamente",
+    "donacionTitulo": "Donaciones",
+    "donacionTexto": "Estamos habilitando un canal de donaciones transparente y en regla con la normativa electoral (CNE). No recibimos aportes anónimos ni de fuentes prohibidas.",
+    "donacionNota": "Mientras tanto, marcá «Aportar económicamente» en el formulario y te contactamos.",
+    "donacionBoton": "Donar (pronto)"
+  },
+  "datos": {
+    "kicker": "Transparencia",
+    "titulo": "Política de tratamiento de datos",
+    "parrafo": "En La Creciente respetamos tu privacidad. Recolectamos únicamente los datos que nos das voluntariamente en este formulario, con la finalidad de contactarte e invitarte a participar en nuestras actividades.",
+    "puntos": [
+      "No vendemos ni compartimos tu información con terceros.",
+      "Podés pedir acceder, actualizar o eliminar tus datos cuando quieras escribiéndonos.",
+      "Tratamos tus datos conforme a la Ley 1581 de 2012 y normas concordantes de Colombia (habeas data)."
+    ]
+  }
+}

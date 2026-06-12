@@ -2,46 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Base from "../../layouts/Base.astro";
 import { principios } from "../../data/sitio";
-
-const estructura = [
-  {
-    nombre: "Asamblea",
-    texto: "Máximo órgano de decisión. Define la línea política y elige a la dirección. Una militante, un voto.",
-    icono: "ph:users-three",
-    color: "var(--amarillo)",
-  },
-  {
-    nombre: "Dirección colectiva",
-    texto: "Conduce la organización entre asambleas, con mandato, paridad y rendición de cuentas. No hay jefaturas: hay vocerías.",
-    icono: "ph:compass",
-    color: "var(--violeta)",
-  },
-  {
-    nombre: "Círculos de base",
-    texto: "La célula viva de La Creciente: grupos territoriales o sectoriales donde se milita, se estudia y se decide desde abajo.",
-    icono: "ph:circles-three",
-    color: "var(--verde)",
-  },
-  {
-    nombre: "Frentes",
-    texto: "Articulan el trabajo por sector —trabajo y sindicalismo, feminismos, estudiantil y UNAL, agrario y ambiental— con autonomía y coordinación.",
-    icono: "ph:flag-banner",
-    color: "var(--magenta)",
-  },
-];
-
-const deberes = [
-  "Participar en un círculo de base y en la vida de la organización.",
-  "Formarse y aportar a la formación de otras y otros.",
-  "Defender los acuerdos colectivos y la unidad de acción.",
-  "Aportar según las posibilidades de cada quien.",
-];
-const derechos = [
-  "Elegir y ser electa o electo en los órganos.",
-  "Deliberar, disentir y proponer con libertad.",
-  "Acceder a la información de la organización.",
-  "Recibir formación y acompañamiento político.",
-];
+import est from "../../data/contenido/estatutos.json";
 ---
 
 <Base
@@ -50,14 +11,10 @@ const derechos = [
 >
   <section class="encab">
     <div class="contenedor">
-      <a href="/quienes-somos/" class="encab__volver"><Icon name="ph:arrow-left" /> Quiénes somos</a>
-      <p class="kicker encab__kicker">Ideario y estatutos</p>
-      <h1 class="encab__titulo">Las reglas<br />de la marea</h1>
-      <p class="encab__bajada">
-        Los estatutos son el acuerdo colectivo sobre cómo nos organizamos,
-        decidimos y nos cuidamos. Resumen público de nuestros principios y
-        estructura.
-      </p>
+      <a href="/quienes-somos/" class="encab__volver"><Icon name="ph:arrow-left" /> {est.encab.volver}</a>
+      <p class="kicker encab__kicker">{est.encab.kicker}</p>
+      <h1 class="encab__titulo">{est.encab.titulo}</h1>
+      <p class="encab__bajada">{est.encab.bajada}</p>
     </div>
   </section>
 
@@ -65,12 +22,9 @@ const derechos = [
   <section class="seccion">
     <div class="contenedor estatutos__grid">
       <div>
-        <p class="kicker">Principios rectores</p>
-        <h2>Cómo nos regimos</h2>
-        <p class="estatutos__intro">
-          Antes que un reglamento, los estatutos son una apuesta ética y política.
-          Estos son los principios que ordenan nuestra vida interna:
-        </p>
+        <p class="kicker">{est.principios.kicker}</p>
+        <h2>{est.principios.titulo}</h2>
+        <p class="estatutos__intro">{est.principios.intro}</p>
       </div>
       <ul class="principios-lista">
         {
@@ -90,13 +44,13 @@ const derechos = [
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">Estructura</p>
-          <h2>Cómo nos organizamos</h2>
+          <p class="kicker">{est.estructura.kicker}</p>
+          <h2>{est.estructura.titulo}</h2>
         </div>
       </header>
       <div class="estructura__grid">
         {
-          estructura.map((e) => (
+          est.estructura.items.map((e) => (
             <article class="org" style={`--c:${e.color}`}>
               <div class="org__icono"><Icon name={e.icono} /></div>
               <h3>{e.nombre}</h3>
@@ -113,18 +67,18 @@ const derechos = [
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">Afiliación</p>
-          <h2>Derechos y deberes</h2>
+          <p class="kicker">{est.afiliacion.kicker}</p>
+          <h2>{est.afiliacion.titulo}</h2>
         </div>
       </header>
       <div class="afiliacion__cols">
         <div class="afiliacion__col">
           <h3><Icon name="ph:hand-heart" /> Derechos</h3>
-          <ul>{derechos.map((d) => <li>{d}</li>)}</ul>
+          <ul>{est.afiliacion.derechos.map((d) => <li>{d}</li>)}</ul>
         </div>
         <div class="afiliacion__col">
           <h3><Icon name="ph:handshake" /> Deberes</h3>
-          <ul>{deberes.map((d) => <li>{d}</li>)}</ul>
+          <ul>{est.afiliacion.deberes.map((d) => <li>{d}</li>)}</ul>
         </div>
       </div>
     </div>
@@ -134,15 +88,12 @@ const derechos = [
   <section class="descarga">
     <div class="contenedor descarga__inner">
       <div>
-        <h2>Documento completo</h2>
-        <p>
-          La versión integral de nuestros estatutos está en proceso de
-          discusión y ratificación. Pronto disponible para descarga.
-        </p>
+        <h2>{est.descarga.titulo}</h2>
+        <p>{est.descarga.texto}</p>
       </div>
       <div class="descarga__acciones">
-        <span class="btn btn--fantasma descarga__pronto"><Icon name="ph:file-text" /> Estatutos (en ratificación)</span>
-        <a href="/contacto/" class="btn btn--amarillo">Quiero militar <Icon name="ph:hand-fist" /></a>
+        <span class="btn btn--fantasma descarga__pronto"><Icon name="ph:file-text" /> {est.descarga.botonDescarga}</span>
+        <a href="/contacto/" class="btn btn--amarillo">{est.descarga.botonCta} <Icon name="ph:hand-fist" /></a>
       </div>
     </div>
   </section>

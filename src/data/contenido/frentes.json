@@ -1,0 +1,43 @@
+{
+  "encab": { "kicker": "Líneas de trabajo", "titulo": "Frentes de lucha", "bajada": "La marea crece por muchos cauces. Cada frente organiza un sector de nuestra sociedad alrededor de sus luchas concretas, sin perder de vista el proyecto común. Encuentra el tuyo." },
+  "faltaLucha": { "titulo": "¿Falta tu lucha?", "texto": "La Creciente está en construcción. Si tu causa o tu sector aún no tiene frente, escríbenos: lo armamos juntas.", "boton": "Proponé un frente" },
+  "franja": { "titulo": "Cada frente es una puerta de entrada", "boton": "Súmate a un frente" },
+  "items": [
+    {
+      "slug": "trabajo-sindicalismo",
+      "nombre": "Trabajo y Sindicalismo",
+      "resumen": "Análisis del trabajo y fortalecimiento sindical.",
+      "descripcion": "Realizamos análisis de coyuntura y estudios sobre la situación del trabajo en el país, y aportamos al fortalecimiento de los procesos de sindicalización existentes y a la reducción de la fragmentación sindical.",
+      "color": "var(--rojo)",
+      "icono": "ph:hammer",
+      "consignas": ["Trabajo digno", "Fortalecer los sindicatos", "Contra la fragmentación sindical"]
+    },
+    {
+      "slug": "feminismos",
+      "nombre": "Feminismos",
+      "resumen": "Género, diversidades y cuidado.",
+      "descripcion": "Desarrollamos conversaciones y discusiones alrededor del género, las diversidades sexo-genéricas y los feminismos, hacia adentro y hacia afuera de la colectividad. Con ello fortalecemos nuestros principios, nuestras relaciones y el trabajo colectivo.",
+      "color": "var(--magenta)",
+      "icono": "ph:gender-female",
+      "consignas": ["El cuidado desde un feminismo para el 99%", "Vida libre de violencias", "Diversidades sexo-genéricas"]
+    },
+    {
+      "slug": "estudiantil-unal",
+      "nombre": "Estudiantil · UNAL",
+      "resumen": "Organización en la Universidad Nacional.",
+      "descripcion": "Promovemos la construcción política colectiva y organizada en la Universidad Nacional de Colombia, incentivando espacios de discusión y formación donde la comunidad universitaria analice e incida sobre las problemáticas que aquejan a la Universidad y al movimiento estudiantil.",
+      "color": "var(--cian)",
+      "icono": "ph:graduation-cap",
+      "consignas": ["Universidad pública", "Constituyente universitaria", "Movimiento estudiantil"]
+    },
+    {
+      "slug": "agrario-ambiental",
+      "nombre": "Agrario y Ambiental",
+      "resumen": "Tierra, alimentos y defensa de la vida.",
+      "descripcion": "Abordamos críticamente las estructuras de dominación colonial, patriarcal y capitalista desde las discusiones sobre la producción y el consumo de alimentos, trabajando en conjunto con el movimiento social, campesino y rural.",
+      "color": "var(--verde)",
+      "icono": "ph:plant",
+      "consignas": ["Soberanía alimentaria", "Defensa de la vida y el territorio", "Junto al campesinado"]
+    }
+  ]
+}

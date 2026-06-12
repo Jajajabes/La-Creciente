@@ -8,6 +8,7 @@ import OlaDivisor from "../components/OlaDivisor.astro";
 import TarjetaFrente from "../components/TarjetaFrente.astro";
 import TarjetaPrensa from "../components/TarjetaPrensa.astro";
 import { frentes } from "../data/sitio";
+import inicio from "../data/contenido/inicio.json";
 
 // Fotos del hero (se optimizan a webp y tamaños responsive en el build).
 import hero1 from "../assets/hero/hero-1.jpeg";
@@ -50,18 +51,14 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
 
     <div class="contenedor hero__inner">
       <div class="hero__contenido">
-        <p class="kicker hero__kicker">Organización política de izquierda</p>
+        <p class="kicker hero__kicker">{inicio.hero.kicker}</p>
         <h1 class="hero__titulo">
-          <span class="hero__sube">Crece</span><br />el poder<br />de la gente
+          <span class="hero__sube">{inicio.hero.tituloDestacado}</span> {inicio.hero.titulo}
         </h1>
-        <p class="hero__manifiesto">
-          Somos <strong>La Creciente</strong>: estudiantes, trabajadoras y trabajadores,
-          feministas y pueblo organizado. Crecemos como el río que no pide permiso
-          <span class="hero__sep">—</span> gota a gota, hasta desbordar la injusticia.
-        </p>
+        <p class="hero__manifiesto">{inicio.hero.manifiesto}</p>
         <div class="hero__acciones">
-          <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">Súmate / Militá <Icon name="ph:hand-fist" /></a>
-          <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">Conócenos</a>
+          <a href="/contacto/" class="btn btn--amarillo hero__btn-grande">{inicio.hero.botonPrimario} <Icon name="ph:hand-fist" /></a>
+          <a href="/quienes-somos/" class="btn btn--fantasma hero__btn-claro">{inicio.hero.botonSecundario}</a>
         </div>
       </div>
     </div>
@@ -73,25 +70,13 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   <section class="seccion manifiesto">
     <div class="contenedor manifiesto__grid">
       <div class="manifiesto__col-eti">
-        <p class="kicker">Nuestro manifiesto</p>
+        <p class="kicker">{inicio.manifiesto.kicker}</p>
       </div>
       <div class="manifiesto__col-texto revelar">
-        <p class="manifiesto__lead">
-          Creemos que otro país es posible y que se construye desde abajo,
-          organizando la esperanza.
-        </p>
-        <p>
-          La crisis no es un destino: es el resultado de decisiones que
-          beneficiaron a unos pocos. Frente al despojo, la precariedad y la
-          violencia, oponemos <strong>organización popular</strong>, memoria y
-          un proyecto de vida digna para las mayorías.
-        </p>
-        <p>
-          No nos resignamos a mirar la política como espectáculo. La hacemos con
-          nuestras manos, en la universidad y el barrio, en el sindicato y la
-          vereda. <mark class="marca-resaltada">La emancipación será obra de las y los de abajo, o no será.</mark>
-        </p>
-        <a href="/quienes-somos/" class="btn btn--violeta">Lee la línea política <Icon name="ph:arrow-right" /></a>
+        <p class="manifiesto__lead">{inicio.manifiesto.lead}</p>
+        {inicio.manifiesto.parrafos.map((p) => <p>{p}</p>)}
+        <p><mark class="marca-resaltada">{inicio.manifiesto.fraseDestacada}</mark></p>
+        <a href="/quienes-somos/" class="btn btn--violeta">{inicio.manifiesto.boton} <Icon name="ph:arrow-right" /></a>
       </div>
     </div>
   </section>
@@ -101,10 +86,10 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">Líneas de trabajo</p>
-          <h2>Nuestros frentes</h2>
+          <p class="kicker">{inicio.frentes.kicker}</p>
+          <h2>{inicio.frentes.titulo}</h2>
         </div>
-        <a href="/frentes/" class="btn btn--fantasma">Ver todos <Icon name="ph:arrow-right" /></a>
+        <a href="/frentes/" class="btn btn--fantasma">{inicio.frentes.boton} <Icon name="ph:arrow-right" /></a>
       </header>
       <div class="frentes-prev__grid">
         {frentes.map((f) => <TarjetaFrente frente={f} />)}
@@ -119,10 +104,10 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
     <div class="contenedor">
       <header class="cab-seccion cab-seccion--claro">
         <div>
-          <p class="kicker">Lo último</p>
-          <h2>Prensa &amp; formación</h2>
+          <p class="kicker">{inicio.noticias.kicker}</p>
+          <h2>{inicio.noticias.titulo}</h2>
         </div>
-        <a href="/prensa/" class="btn btn--amarillo">Toda la prensa <Icon name="ph:arrow-right" /></a>
+        <a href="/prensa/" class="btn btn--amarillo">{inicio.noticias.boton} <Icon name="ph:arrow-right" /></a>
       </header>
       <div class="noticias__grid">
         {
@@ -143,13 +128,10 @@ const noticias = (await getCollection("prensa", ({ data }) => !data.borrador))
   <!-- ===================== CTA GIGANTE ===================== -->
   <section class="cta-gigante">
     <div class="contenedor cta-gigante__inner">
-      <p class="kicker cta-gigante__kicker">No mires desde la orilla</p>
-      <h2 class="cta-gigante__titulo">Súmate a<br />la marea</h2>
-      <p class="cta-gigante__texto">
-        No hace falta ser militante de estructura para aportar. Súmate como
-        simpatizante, voluntaria o puente con tu comunidad. Te necesitamos.
-      </p>
-      <a href="/contacto/" class="btn btn--amarillo cta-gigante__btn">Quiero sumarme <Icon name="ph:arrow-right" /></a>
+      <p class="kicker cta-gigante__kicker">{inicio.cta.kicker}</p>
+      <h2 class="cta-gigante__titulo">{inicio.cta.titulo}</h2>
+      <p class="cta-gigante__texto">{inicio.cta.texto}</p>
+      <a href="/contacto/" class="btn btn--amarillo cta-gigante__btn">{inicio.cta.boton} <Icon name="ph:arrow-right" /></a>
     </div>
   </section>
 </Base>

@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "kicker": "Organización política de izquierda",
+    "tituloDestacado": "Crece",
+    "titulo": "el poder de la gente",
+    "manifiesto": "Somos La Creciente: estudiantes, trabajadoras y trabajadores, feministas y pueblo organizado. Crecemos como el río que no pide permiso: gota a gota, hasta desbordar la injusticia.",
+    "botonPrimario": "Súmate / Militá",
+    "botonSecundario": "Conócenos"
+  },
+  "manifiesto": {
+    "kicker": "Nuestro manifiesto",
+    "lead": "Creemos que otro país es posible y que se construye desde abajo, organizando la esperanza.",
+    "parrafos": [
+      "La crisis no es un destino: es el resultado de decisiones que beneficiaron a unos pocos. Frente al despojo, la precariedad y la violencia, oponemos organización popular, memoria y un proyecto de vida digna para las mayorías.",
+      "No nos resignamos a mirar la política como espectáculo. La hacemos con nuestras manos, en la universidad y el barrio, en el sindicato y la vereda."
+    ],
+    "fraseDestacada": "La emancipación será obra de las y los de abajo, o no será.",
+    "boton": "Lee la línea política"
+  },
+  "frentes": { "kicker": "Líneas de trabajo", "titulo": "Nuestros frentes", "boton": "Ver todos" },
+  "noticias": { "kicker": "Lo último", "titulo": "Prensa y formación", "boton": "Toda la prensa" },
+  "cta": {
+    "kicker": "No mires desde la orilla",
+    "titulo": "Súmate a la marea",
+    "texto": "No hace falta ser militante de estructura para aportar. Súmate como simpatizante, voluntaria o puente con tu comunidad. Te necesitamos.",
+    "boton": "Quiero sumarme"
+  }
+}

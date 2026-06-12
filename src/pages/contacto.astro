@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import { sitio, frentes } from "../data/sitio";
+import cont from "../data/contenido/contacto.json";
 ---
 
 <Base
@@ -10,12 +11,9 @@ import { sitio, frentes } from "../data/sitio";
 >
   <section class="encab">
     <div class="contenedor">
-      <p class="kicker encab__kicker">Súmate / Militá</p>
-      <h1 class="encab__titulo">Hacé crecer<br />la marea</h1>
-      <p class="encab__bajada">
-        No hace falta pertenecer a la estructura formal para aportar. Dejanos
-        tus datos y el equipo te contacta para encontrar tu lugar en la lucha.
-      </p>
+      <p class="kicker encab__kicker">{cont.encab.kicker}</p>
+      <h1 class="encab__titulo">{cont.encab.titulo}</h1>
+      <p class="encab__bajada">{cont.encab.bajada}</p>
     </div>
   </section>
 
@@ -23,7 +21,7 @@ import { sitio, frentes } from "../data/sitio";
     <div class="contenedor contacto__grid">
       <!-- ===== Formulario ===== -->
       <div class="form-bloque">
-        <h2 class="form-bloque__titulo">Quiero sumarme</h2>
+        <h2 class="form-bloque__titulo">{cont.form.titulo}</h2>
 
         <!--
           Formulario listo para Netlify Forms (data-netlify="true").
@@ -99,7 +97,7 @@ import { sitio, frentes } from "../data/sitio";
           </label>
 
           <button type="submit" class="btn btn--violeta form__enviar">
-            Enviar y sumarme <Icon name="ph:paper-plane-tilt" />
+            {cont.form.boton} <Icon name="ph:paper-plane-tilt" />
           </button>
           <p class="form__nota">* Campos obligatorios. Tus datos no se comparten con terceros.</p>
         </form>
@@ -108,7 +106,7 @@ import { sitio, frentes } from "../data/sitio";
       <!-- ===== Lateral: contacto + donaciones ===== -->
       <aside class="lateral">
         <div class="lateral__bloque">
-          <h3>Escribinos directo</h3>
+          <h3>{cont.lateral.tituloContacto}</h3>
           <p class="lateral__dato">
             <Icon name="ph:envelope-simple" class="ico" />
             <a href={`mailto:${sitio.email}`} class="lateral__mail">{sitio.email}</a>
@@ -133,18 +131,11 @@ import { sitio, frentes } from "../data/sitio";
         </div>
 
         <div class="lateral__bloque lateral__donar">
-          <span class="lateral__badge">Próximamente</span>
-          <h3>Donaciones</h3>
-          <p>
-            Estamos habilitando un canal de donaciones <strong>transparente y en
-            regla</strong> con la normativa electoral (CNE). No recibimos aportes
-            anónimos ni de fuentes prohibidas.
-          </p>
-          <p class="lateral__donar-nota">
-            Mientras tanto, marcá <em>«Aportar económicamente»</em> en el
-            formulario y te contactamos.
-          </p>
-          <button class="btn btn--fantasma" disabled><Icon name="ph:hand-heart" /> Donar (pronto)</button>
+          <span class="lateral__badge">{cont.lateral.donacionBadge}</span>
+          <h3>{cont.lateral.donacionTitulo}</h3>
+          <p>{cont.lateral.donacionTexto}</p>
+          <p class="lateral__donar-nota">{cont.lateral.donacionNota}</p>
+          <button class="btn btn--fantasma" disabled><Icon name="ph:hand-heart" /> {cont.lateral.donacionBoton}</button>
         </div>
       </aside>
     </div>
@@ -153,18 +144,12 @@ import { sitio, frentes } from "../data/sitio";
   <!-- ===== Política de datos ===== -->
   <section class="datos" id="datos">
     <div class="contenedor datos__inner">
-      <p class="kicker datos__kicker">Transparencia</p>
-      <h2>Política de tratamiento de datos</h2>
+      <p class="kicker datos__kicker">{cont.datos.kicker}</p>
+      <h2>{cont.datos.titulo}</h2>
       <div class="datos__texto prosa">
-        <p>
-          En La Creciente respetamos tu privacidad. Recolectamos únicamente los
-          datos que nos das voluntariamente en este formulario, con la finalidad
-          de contactarte e invitarte a participar en nuestras actividades.
-        </p>
+        <p>{cont.datos.parrafo}</p>
         <ul>
-          <li>No vendemos ni compartimos tu información con terceros.</li>
-          <li>Podés pedir acceder, actualizar o eliminar tus datos cuando quieras escribiendo a <a href={`mailto:${sitio.email}`}>{sitio.email}</a>.</li>
-          <li>Tratamos tus datos conforme a la Ley 1581 de 2012 y normas concordantes de Colombia (habeas data).</li>
+          {cont.datos.puntos.map((punto) => <li>{punto}</li>)}
         </ul>
       </div>
     </div>
