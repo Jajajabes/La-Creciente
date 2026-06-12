@@ -25,7 +25,8 @@ export const navegacion = [
   { texto: "Inicio", url: "/" },
   { texto: "Quiénes Somos", url: "/quienes-somos/" },
   { texto: "Frentes", url: "/frentes/" },
-  { texto: "Prensa / Formación", url: "/prensa/" },
+  { texto: "Prensa", url: "/prensa/" },
+  { texto: "Formación", url: "/formacion/" },
   { texto: "Contacto", url: "/contacto/" },
 ];
 
@@ -41,53 +42,58 @@ export type Frente = {
 
 export const frentes: Frente[] = [
   {
-    slug: "juventud",
-    nombre: "Juventud",
-    resumen: "Estudiantes y juventudes organizadas.",
+    slug: "trabajo-sindicalismo",
+    nombre: "Trabajo y Sindicalismo",
+    resumen: "Análisis del trabajo y fortalecimiento sindical.",
     descripcion:
-      "Articulamos a estudiantes, jóvenes trabajadores y desempleados alrededor de la educación pública, el derecho al futuro y la rebeldía organizada. La universidad y el barrio como escuelas de lucha.",
-    color: "var(--amarillo)",
-    icono: "ph:users-three",
-    consignas: ["Educación pública y gratuita", "Cupo y vida digna", "Futuro para la juventud"],
-  },
-  {
-    slug: "trabajadores",
-    nombre: "Trabajadores",
-    resumen: "Sindicatos y economía popular.",
-    descripcion:
-      "Acompañamos a quienes sostienen el país con su trabajo: sindicatos, informales, economía popular. Salario digno, estabilidad y un modelo productivo que no se construya sobre la espalda de la clase trabajadora.",
+      "Realizamos análisis de coyuntura y estudios sobre la situación del trabajo en el país, y aportamos al fortalecimiento de los procesos de sindicalización existentes y a la reducción de la fragmentación sindical.",
     color: "var(--rojo)",
     icono: "ph:hammer",
-    consignas: ["Salario y trabajo digno", "Reforma laboral", "Organización sindical"],
+    consignas: ["Trabajo digno", "Fortalecer los sindicatos", "Contra la fragmentación sindical"],
   },
   {
     slug: "feminismos",
     nombre: "Feminismos",
-    resumen: "Vida libre de violencias.",
+    resumen: "Género, diversidades y cuidado.",
     descripcion:
-      "Construimos un feminismo popular y antipatriarcal: contra las violencias, por los cuidados como asunto colectivo y por la autonomía de los cuerpos. No hay revolución sin nosotras.",
+      "Desarrollamos conversaciones y discusiones alrededor del género, las diversidades sexo-genéricas y los feminismos, hacia adentro y hacia afuera de la colectividad. Con ello fortalecemos nuestros principios, nuestras relaciones y el trabajo colectivo.",
     color: "var(--magenta)",
     icono: "ph:gender-female",
-    consignas: ["Vida libre de violencias", "Cuidados colectivos", "Autonomía de los cuerpos"],
-  },
-  {
-    slug: "territorial",
-    nombre: "Territorial",
-    resumen: "Barrios, campo y medio ambiente.",
-    descripcion:
-      "Tejemos organización en barrios, veredas y territorios. Defensa del agua y la vida, soberanía alimentaria y poder local frente al despojo. El territorio se defiende habitándolo y organizándolo.",
-    color: "var(--verde)",
-    icono: "ph:tree",
-    consignas: ["Defensa del agua y la vida", "Soberanía alimentaria", "Poder local"],
+    consignas: ["El cuidado desde un feminismo para el 99%", "Vida libre de violencias", "Diversidades sexo-genéricas"],
   },
   {
     slug: "estudiantil-unal",
     nombre: "Estudiantil · UNAL",
-    resumen: "Constituyente universitaria.",
+    resumen: "Organización en la Universidad Nacional.",
     descripcion:
-      "Impulsamos el proceso constituyente universitario y la defensa de la universidad pública. Cogobierno, autonomía y una Universidad Nacional al servicio del pueblo, no del mercado.",
+      "Promovemos la construcción política colectiva y organizada en la Universidad Nacional de Colombia, incentivando espacios de discusión y formación donde la comunidad universitaria analice e incida sobre las problemáticas que aquejan a la Universidad y al movimiento estudiantil.",
     color: "var(--cian)",
     icono: "ph:graduation-cap",
-    consignas: ["Constituyente universitaria", "Autonomía y cogobierno", "Universidad para el pueblo"],
+    consignas: ["Universidad pública", "Constituyente universitaria", "Movimiento estudiantil"],
   },
+  {
+    slug: "agrario-ambiental",
+    nombre: "Agrario y Ambiental",
+    resumen: "Tierra, alimentos y defensa de la vida.",
+    descripcion:
+      "Abordamos críticamente las estructuras de dominación colonial, patriarcal y capitalista desde las discusiones sobre la producción y el consumo de alimentos, trabajando en conjunto con el movimiento social, campesino y rural.",
+    color: "var(--verde)",
+    icono: "ph:plant",
+    consignas: ["Soberanía alimentaria", "Defensa de la vida y el territorio", "Junto al campesinado"],
+  },
+];
+
+export type Principio = { titulo: string; texto: string; color: string };
+
+/** Los 9 principios de La Creciente (Declaración Política, 2024). */
+export const principios: Principio[] = [
+  { titulo: "Solidaridad socialista", texto: "De cada cual según sus capacidades, a cada cual según sus necesidades.", color: "var(--rojo)" },
+  { titulo: "Mandar obedeciendo", texto: "Priorizamos la construcción y la toma de decisiones de forma colectiva.", color: "var(--violeta)" },
+  { titulo: "Autonomía y autogestión", texto: "Nos organizamos y sostenemos por nuestros propios medios y decisiones.", color: "var(--verde)" },
+  { titulo: "Abolicionismo", texto: "Contra todas las formas de opresión, dominación y explotación.", color: "var(--magenta)" },
+  { titulo: "Antipunitivismo y antimilitarismo", texto: "Desde un enfoque restaurativo y reparador.", color: "var(--cian)" },
+  { titulo: "Antipatriarcalismo", texto: "En nuestro quehacer y en nuestras relaciones interpersonales.", color: "var(--magenta)" },
+  { titulo: "Cuidado relacional militante", texto: "El cuidado como práctica política, no solo como discurso.", color: "var(--amarillo)" },
+  { titulo: "Reconocimiento de saberes", texto: "Valoramos los saberes, haceres y experiencias de todxs.", color: "var(--verde)" },
+  { titulo: "Compromiso y confianza", texto: "Compromiso, corresponsabilidad y confianza compartida.", color: "var(--amarillo)" },
 ];

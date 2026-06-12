@@ -21,4 +21,31 @@ const prensa = defineCollection({
   }),
 });
 
-export const collections = { prensa };
+/**
+ * Colección "documentos": biblioteca de formación. Cada ficha resume un
+ * material y enlaza a su descarga/fuente. Si `enlace` falta, la web lo
+ * muestra como "Próximamente" (pegá el enlace de Drive cuando lo tengas).
+ */
+const documentos = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/documentos" }),
+  schema: z.object({
+    titulo: z.string(),
+    resumen: z.string(),
+    categoria: z.enum([
+      "induccion",
+      "feminismos",
+      "marxismo",
+      "universidad",
+      "organizacion",
+    ]),
+    origen: z.enum(["La Creciente", "Externo", "Recomendado"]).default("Recomendado"),
+    formato: z.string().default("PDF"),
+    // URL externa o ruta en /public (ej. /documentos/archivo.pdf). Opcional.
+    enlace: z.string().optional(),
+    autor: z.string().optional(),
+    orden: z.number().default(0),
+    destacado: z.boolean().default(false),
+  }),
+});
+
+export const collections = { prensa, documentos };

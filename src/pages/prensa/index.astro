@@ -75,14 +75,13 @@ const filtros = [
         <p class="kicker biblioteca__kicker">Biblioteca digital</p>
         <h2>Para estudiar y debatir</h2>
         <p class="biblioteca__texto">
-          Estamos reuniendo documentos de formación, estatutos, propuestas
-          programáticas y materiales históricos en una biblioteca abierta.
-          Pronto disponible para descarga.
+          Reunimos materiales de formación, lecturas recomendadas y documentos
+          propios en una biblioteca abierta para estudiar y organizar.
         </p>
-        <a href="/contacto/" class="btn btn--amarillo">Avísame cuando esté <Icon name="ph:bell-ringing" /></a>
+        <a href="/formacion/" class="btn btn--amarillo">Ir a la biblioteca <Icon name="ph:arrow-right" /></a>
       </div>
       <div class="biblioteca__sello" aria-hidden="true">
-        <span>Próximamente</span>
+        <Icon name="ph:books" />
       </div>
     </div>
   </section>
@@ -211,6 +210,10 @@ const filtros = [
     font-size: 1.2rem;
     transform: rotate(-8deg);
     box-shadow: var(--sombra-dura-sm);
+  }
+  .biblioteca__sello svg {
+    width: 68px;
+    height: 68px;
   }
   @media (max-width: 620px) {
     .biblioteca__sello {

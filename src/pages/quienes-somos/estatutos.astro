@@ -1,0 +1,354 @@
+---
+import { Icon } from "astro-icon/components";
+import Base from "../../layouts/Base.astro";
+import { principios } from "../../data/sitio";
+
+const estructura = [
+  {
+    nombre: "Asamblea",
+    texto: "Máximo órgano de decisión. Define la línea política y elige a la dirección. Una militante, un voto.",
+    icono: "ph:users-three",
+    color: "var(--amarillo)",
+  },
+  {
+    nombre: "Dirección colectiva",
+    texto: "Conduce la organización entre asambleas, con mandato, paridad y rendición de cuentas. No hay jefaturas: hay vocerías.",
+    icono: "ph:compass",
+    color: "var(--violeta)",
+  },
+  {
+    nombre: "Círculos de base",
+    texto: "La célula viva de La Creciente: grupos territoriales o sectoriales donde se milita, se estudia y se decide desde abajo.",
+    icono: "ph:circles-three",
+    color: "var(--verde)",
+  },
+  {
+    nombre: "Frentes",
+    texto: "Articulan el trabajo por sector —trabajo y sindicalismo, feminismos, estudiantil y UNAL, agrario y ambiental— con autonomía y coordinación.",
+    icono: "ph:flag-banner",
+    color: "var(--magenta)",
+  },
+];
+
+const deberes = [
+  "Participar en un círculo de base y en la vida de la organización.",
+  "Formarse y aportar a la formación de otras y otros.",
+  "Defender los acuerdos colectivos y la unidad de acción.",
+  "Aportar según las posibilidades de cada quien.",
+];
+const derechos = [
+  "Elegir y ser electa o electo en los órganos.",
+  "Deliberar, disentir y proponer con libertad.",
+  "Acceder a la información de la organización.",
+  "Recibir formación y acompañamiento político.",
+];
+---
+
+<Base
+  titulo="Ideario y Estatutos"
+  descripcion="Principios rectores, estructura organizativa y forma de afiliación de La Creciente."
+>
+  <section class="encab">
+    <div class="contenedor">
+      <a href="/quienes-somos/" class="encab__volver"><Icon name="ph:arrow-left" /> Quiénes somos</a>
+      <p class="kicker encab__kicker">Ideario y estatutos</p>
+      <h1 class="encab__titulo">Las reglas<br />de la marea</h1>
+      <p class="encab__bajada">
+        Los estatutos son el acuerdo colectivo sobre cómo nos organizamos,
+        decidimos y nos cuidamos. Resumen público de nuestros principios y
+        estructura.
+      </p>
+    </div>
+  </section>
+
+  <!-- Principios rectores -->
+  <section class="seccion">
+    <div class="contenedor estatutos__grid">
+      <div>
+        <p class="kicker">Principios rectores</p>
+        <h2>Cómo nos regimos</h2>
+        <p class="estatutos__intro">
+          Antes que un reglamento, los estatutos son una apuesta ética y política.
+          Estos son los principios que ordenan nuestra vida interna:
+        </p>
+      </div>
+      <ul class="principios-lista">
+        {
+          principios.map((p) => (
+            <li>
+              <Icon name="ph:check-circle" />
+              <span><strong>{p.titulo}.</strong> {p.texto}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Estructura -->
+  <section class="seccion estructura">
+    <div class="contenedor">
+      <header class="cab-seccion">
+        <div>
+          <p class="kicker">Estructura</p>
+          <h2>Cómo nos organizamos</h2>
+        </div>
+      </header>
+      <div class="estructura__grid">
+        {
+          estructura.map((e) => (
+            <article class="org" style={`--c:${e.color}`}>
+              <div class="org__icono"><Icon name={e.icono} /></div>
+              <h3>{e.nombre}</h3>
+              <p>{e.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Afiliación -->
+  <section class="seccion afiliacion">
+    <div class="contenedor">
+      <header class="cab-seccion">
+        <div>
+          <p class="kicker">Afiliación</p>
+          <h2>Derechos y deberes</h2>
+        </div>
+      </header>
+      <div class="afiliacion__cols">
+        <div class="afiliacion__col">
+          <h3><Icon name="ph:hand-heart" /> Derechos</h3>
+          <ul>{derechos.map((d) => <li>{d}</li>)}</ul>
+        </div>
+        <div class="afiliacion__col">
+          <h3><Icon name="ph:handshake" /> Deberes</h3>
+          <ul>{deberes.map((d) => <li>{d}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Descarga + CTA -->
+  <section class="descarga">
+    <div class="contenedor descarga__inner">
+      <div>
+        <h2>Documento completo</h2>
+        <p>
+          La versión integral de nuestros estatutos está en proceso de
+          discusión y ratificación. Pronto disponible para descarga.
+        </p>
+      </div>
+      <div class="descarga__acciones">
+        <span class="btn btn--fantasma descarga__pronto"><Icon name="ph:file-text" /> Estatutos (en ratificación)</span>
+        <a href="/contacto/" class="btn btn--amarillo">Quiero militar <Icon name="ph:hand-fist" /></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    color: color-mix(in srgb, var(--papel) 80%, transparent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+  }
+  .encab__volver:hover {
+    color: var(--amarillo);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 48ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .estatutos__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .estatutos__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .estatutos__grid h2 {
+    color: var(--violeta);
+    margin: 0.4rem 0 1rem;
+  }
+  .estatutos__intro {
+    font-size: 1.08rem;
+    max-width: 42ch;
+  }
+  .principios-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .principios-lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8ch;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--papel-3);
+    padding-bottom: 1rem;
+  }
+  .principios-lista svg {
+    color: var(--violeta-vivo);
+    width: 1.4em;
+    height: 1.4em;
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+
+  .estructura {
+    background: var(--papel-2);
+    border-block: 3px solid var(--tinta);
+  }
+  .cab-seccion {
+    margin-bottom: 2.4rem;
+  }
+  .cab-seccion h2 {
+    color: var(--violeta);
+    margin-top: 0.3rem;
+  }
+  .cab-seccion .kicker {
+    color: var(--tenue);
+  }
+  .estructura__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: 1.4rem;
+  }
+  .org {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-top: 10px solid var(--c);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .org__icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--c);
+    color: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    margin-bottom: 1rem;
+  }
+  .org__icono svg {
+    width: 28px;
+    height: 28px;
+  }
+  .org h3 {
+    color: var(--violeta);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .afiliacion__cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.5rem;
+  }
+  .afiliacion__col {
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
+    padding: 1.6rem;
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .afiliacion__col h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
+    color: var(--violeta);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .afiliacion__col h3 svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+  .afiliacion__col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .afiliacion__col li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  .afiliacion__col li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.7rem;
+    height: 0.7rem;
+    background: var(--amarillo);
+    transform: rotate(45deg);
+  }
+
+  .descarga {
+    background: var(--violeta-profundo);
+    color: var(--papel);
+    border-top: 3px solid var(--tinta);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .descarga__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .descarga h2 {
+    color: var(--papel);
+    margin-bottom: 0.6rem;
+  }
+  .descarga p {
+    color: color-mix(in srgb, var(--papel) 85%, transparent);
+    max-width: 44ch;
+  }
+  .descarga__acciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .descarga__pronto {
+    opacity: 0.7;
+    cursor: not-allowed;
+    color: var(--papel);
+    border-color: color-mix(in srgb, var(--papel) 50%, transparent);
+  }
+</style>

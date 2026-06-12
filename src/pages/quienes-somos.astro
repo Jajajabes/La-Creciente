@@ -3,98 +3,71 @@ import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import OlaDivisor from "../components/OlaDivisor.astro";
 import Marquesina from "../components/Marquesina.astro";
+import { principios } from "../data/sitio";
 
-const principios = [
-  {
-    titulo: "Justicia social",
-    texto:
-      "La riqueza la produce el pueblo y debe volver al pueblo. Luchamos contra la desigualdad como eje de todo lo demás.",
-    color: "var(--rojo)",
-  },
-  {
-    titulo: "Democracia de base",
-    texto:
-      "El poder se ejerce desde abajo, deliberando y decidiendo en común. Nada sobre nosotras sin nosotras.",
-    color: "var(--violeta)",
-  },
-  {
-    titulo: "Feminismo popular",
-    texto:
-      "Contra el patriarcado y por la vida libre de violencias. Los cuidados son un asunto colectivo y político.",
-    color: "var(--magenta)",
-  },
-  {
-    titulo: "Defensa de lo común",
-    texto:
-      "El agua, la tierra, la educación y la salud no son mercancías. Defendemos lo público y los bienes comunes.",
-    color: "var(--verde)",
-  },
-  {
-    titulo: "Internacionalismo",
-    texto:
-      "La lucha no tiene fronteras. Nos hermanamos con los pueblos que resisten en Nuestra América y el mundo.",
-    color: "var(--cian)",
-  },
-  {
-    titulo: "Unidad popular",
-    texto:
-      "Tejemos con otras fuerzas sin disolver nuestra identidad. La unidad es estratégica, no oportunista.",
-    color: "var(--amarillo)",
-  },
+const debates = [
+  "Pensar más allá de la economía de libre mercado y de la economía planificada.",
+  "Superar la fragmentación y la «priorización» de las luchas políticas.",
+  "Quebrar las jerarquías entre saberes y posiciones sociales.",
+  "Repensar la articulación entre lo local y lo global.",
+];
+
+const ejes = [
+  { texto: "Construcción y acumulación política y organizativa, territorial y sectorial.", icono: "ph:stack" },
+  { texto: "Participación en la lucha institucional y la disputa del poder del Estado.", icono: "ph:bank" },
+  { texto: "Articulación con otros parches y organizaciones.", icono: "ph:handshake" },
+  { texto: "Una nueva hegemonía ideológica desde el pensamiento crítico.", icono: "ph:lightbulb" },
+  { texto: "Cambios en las condiciones materiales, hacia adentro y hacia afuera de la colectividad.", icono: "ph:buildings" },
 ];
 
 const hitos = [
-  { anio: "2023", texto: "Confluyen colectivos estudiantiles y populares. Primeros diseños y consignas de La Creciente." },
-  { anio: "2024", texto: "Impulso del proceso constituyente universitario en la UNAL y articulación territorial." },
-  { anio: "2025", texto: "Seminario político interno y propuesta de estatutos: damos forma a la organización." },
-  { anio: "2026", texto: "Presencia pública: lanzamos nuestra web y abrimos las puertas a simpatizantes." },
+  { anio: "2023", texto: "Confluyen colectivos estudiantiles, populares, feministas y territoriales." },
+  { anio: "2024", texto: "Primer seminario político. Publicamos nuestra Declaración Política e impulsamos el proceso constituyente en la UNAL." },
+  { anio: "2025", texto: "Discusión de nuestros estatutos y consolidación organizativa." },
+  { anio: "2026", texto: "Damos el paso a la presencia pública con nuestra web." },
 ];
 ---
 
 <Base
   titulo="Quiénes Somos"
-  descripcion="Historia de La Creciente, nuestros principios ideológicos y nuestra línea política."
+  descripcion="Nuestro horizonte, principios y trabajo político: un socialismo renovado que recoge las banderas del marxismo, el feminismo, el antirracismo y el pensamiento descolonial."
 >
-  <!-- Encabezado -->
   <section class="encab">
     <div class="contenedor">
       <p class="kicker encab__kicker">Quiénes somos</p>
-      <h1 class="encab__titulo">Una historia<br />que viene de abajo</h1>
+      <h1 class="encab__titulo">Nuestro<br />horizonte</h1>
       <p class="encab__bajada">
-        La Creciente nace del encuentro de luchas estudiantiles, populares,
-        feministas y territoriales. No somos un nombre improvisado: somos años de
-        trabajo militante que decidieron confluir.
+        Nuestro horizonte, principios y trabajo político. ¿Para dónde vamos y
+        para qué existe La Creciente?
       </p>
     </div>
   </section>
 
   <Marquesina
-    items={["Justicia social", "Democracia de base", "Feminismo popular", "Defensa de lo común", "Internacionalismo", "Unidad popular"]}
+    items={["Marxismo", "Feminismo", "Antirracismo", "Pensamiento descolonial", "Socialismo renovado"]}
   />
 
-  <!-- Historia -->
-  <section class="seccion historia">
-    <div class="contenedor historia__grid">
-      <div class="historia__texto revelar">
-        <p class="kicker">Nuestra historia</p>
-        <h2>De la gota al desborde</h2>
-        <p>
-          Tomamos el nombre de aquello que crece sin pedir permiso: la creciente
-          de un río que, gota a gota, termina por desbordar. Así entendemos la
-          política: como un proceso paciente y colectivo de acumulación de
-          fuerzas.
+  <!-- Horizonte / colectividad -->
+  <section class="seccion">
+    <div class="contenedor horizonte__grid">
+      <div class="horizonte__texto revelar">
+        <p class="kicker">Horizonte</p>
+        <h2>Para dónde vamos</h2>
+        <p class="horizonte__lead">
+          Queremos contribuir a la construcción de un proyecto político-social
+          que genere consenso ideológico alrededor de un <strong>socialismo
+          renovado</strong>, que recoja las banderas del marxismo, el feminismo,
+          el antirracismo y el pensamiento descolonial latinoamericano, entre
+          otros.
         </p>
         <p>
-          Venimos de las asambleas universitarias, de los paros, de las
-          organizaciones de mujeres y de los procesos barriales y campesinos. En
-          ese camino entendimos que la indignación dispersa no alcanza: hace
-          falta <strong>organización</strong> con principios, formación y
-          estrategia.
+          El orden social capitalista, colonial y patriarcal ha generado una
+          crisis civilizatoria que amenaza la vida en la tierra. Ese orden no es
+          natural: fue construido por fuerzas sociales e históricas, <mark class="marca-resaltada">lo que implica que podemos transformarlo.</mark>
         </p>
         <p>
-          Hoy somos una organización política de izquierda que aspira a aportar a
-          la construcción de un proyecto popular para Colombia, junto a otras
-          fuerzas del cambio.
+          Dentro de ese contexto, La Creciente existe para proponer y construir
+          un nuevo socialismo que nos ayude a superar esa crisis.
         </p>
       </div>
       <ol class="linea-tiempo" aria-label="Hitos de La Creciente">
@@ -110,13 +83,41 @@ const hitos = [
     </div>
   </section>
 
+  <!-- Socialismo renovado -->
+  <section class="seccion renovado">
+    <div class="contenedor">
+      <header class="cab-seccion cab-seccion--claro">
+        <div>
+          <p class="kicker">Un socialismo renovado</p>
+          <h2>Cerrar viejos debates</h2>
+        </div>
+      </header>
+      <div class="renovado__grid">
+        {
+          debates.map((d, i) => (
+            <article class="debate">
+              <span class="debate__num">{String(i + 1).padStart(2, "0")}</span>
+              <p>{d}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="renovado__cierre">
+        El cambio social pasa por la conquista del poder político, el control del
+        Estado y una <strong>radicalización de la democracia</strong> que
+        promueva la movilización social continua, así como por una transformación
+        del sentido común.
+      </p>
+    </div>
+  </section>
+
   <!-- Principios -->
   <section class="seccion principios">
     <div class="contenedor">
       <header class="cab-seccion">
         <div>
-          <p class="kicker">En qué creemos</p>
-          <h2>Principios ideológicos</h2>
+          <p class="kicker">Cómo actuamos</p>
+          <h2>Nuestros principios</h2>
         </div>
       </header>
       <div class="principios__grid">
@@ -130,31 +131,56 @@ const hitos = [
           ))
         }
       </div>
+      <div class="principios__cta">
+        <a href="/quienes-somos/estatutos/" class="btn btn--violeta">Ver ideario y estatutos <Icon name="ph:arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ejes -->
+  <section class="seccion ejes">
+    <div class="contenedor">
+      <header class="cab-seccion">
+        <div>
+          <p class="kicker">Trabajo político</p>
+          <h2>Nuestros ejes</h2>
+        </div>
+      </header>
+      <div class="ejes__grid">
+        {
+          ejes.map((e) => (
+            <article class="eje">
+              <div class="eje__icono"><Icon name={e.icono} /></div>
+              <p>{e.texto}</p>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   <OlaDivisor fondo="var(--papel)" relleno="var(--violeta)" />
 
-  <!-- Línea política -->
-  <section class="linea-politica">
-    <div class="contenedor linea-politica__inner">
-      <p class="kicker linea-politica__kicker">Nuestra línea política</p>
-      <h2>Hacia dónde vamos</h2>
-      <div class="linea-politica__cols">
+  <!-- Proyección política -->
+  <section class="proyeccion">
+    <div class="contenedor proyeccion__inner">
+      <p class="kicker proyeccion__kicker">Nuestra proyección política</p>
+      <h2>Hacia dónde disputamos</h2>
+      <div class="proyeccion__cols">
         <p>
-          Apostamos por la <strong>unidad de las fuerzas del cambio</strong> y por
-          un gobierno popular que profundice las reformas pendientes: agraria,
-          laboral, de la salud, educativa y ambiental. Pero sabemos que ningún
-          cambio se sostiene sin pueblo organizado que lo respalde y lo empuje.
+          Trabajamos en el campo de la izquierda colombiana y los sectores
+          alternativos, consolidando proyectos de <strong>acumulación política y
+          organizativa</strong> anclados a territorios y luchas: la feminista, la
+          sindical, la estudiantil, la agraria y la ambiental.
         </p>
         <p>
-          Por eso nuestra tarea central es <strong>construir poder popular desde
-          la base</strong>: en la universidad, el trabajo, los territorios y los
-          feminismos. Combinamos la movilización con la formación y la
-          institucionalidad cuando sirve al pueblo, sin renunciar nunca a la
-          autonomía y la crítica.
+          La disputa la damos dentro y fuera de las estructuras del Estado,
+          manteniendo vivo el movimiento social y popular. Las disputas
+          electorales son solo <strong>un escenario estratégico temporal</strong>
+          en nuestra apuesta de largo plazo por un orden social distinto.
         </p>
       </div>
+      <p class="proyeccion__lema">«Crece el poder de la gente»</p>
       <a href="/contacto/" class="btn btn--amarillo">Construí con nosotras <Icon name="ph:arrow-right" /></a>
     </div>
   </section>
@@ -183,25 +209,50 @@ const hitos = [
     color: color-mix(in srgb, var(--papel) 90%, transparent);
   }
 
-  .historia__grid {
+  /* Cabeceras */
+  .cab-seccion {
+    margin-bottom: 2.4rem;
+  }
+  .cab-seccion h2 {
+    color: var(--violeta);
+    margin-top: 0.3rem;
+  }
+  .cab-seccion .kicker {
+    color: var(--tenue);
+  }
+  .cab-seccion--claro h2 {
+    color: var(--papel);
+  }
+  .cab-seccion--claro .kicker {
+    color: var(--amarillo);
+  }
+
+  /* Horizonte */
+  .horizonte__grid {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: start;
   }
   @media (max-width: 820px) {
-    .historia__grid {
+    .horizonte__grid {
       grid-template-columns: 1fr;
     }
   }
-  .historia__texto h2 {
+  .horizonte__texto h2 {
     color: var(--violeta);
-    margin: 0.5rem 0 1.3rem;
+    margin: 0.4rem 0 1.3rem;
   }
-  .historia__texto p {
+  .horizonte__texto p {
     margin-bottom: 1.1rem;
     max-width: 58ch;
     font-size: 1.08rem;
+  }
+  .horizonte__lead {
+    font-size: clamp(1.15rem, 1rem + 0.8vw, 1.4rem) !important;
+    line-height: 1.45;
+    font-family: var(--serif);
+    color: var(--violeta);
   }
 
   .linea-tiempo {
@@ -237,13 +288,54 @@ const hitos = [
     margin-bottom: 0.3rem;
   }
 
+  /* Socialismo renovado */
+  .renovado {
+    background: var(--violeta-profundo);
+    color: var(--papel);
+    border-block: 3px solid var(--tinta);
+  }
+  .renovado__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 1.4rem;
+  }
+  .debate {
+    border: 2px solid color-mix(in srgb, var(--papel) 30%, transparent);
+    border-radius: var(--radio);
+    padding: 1.4rem 1.5rem;
+    background: color-mix(in srgb, var(--papel) 5%, transparent);
+  }
+  .debate__num {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--amarillo);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+  .debate p {
+    color: color-mix(in srgb, var(--papel) 92%, transparent);
+  }
+  .renovado__cierre {
+    margin-top: 2.2rem;
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1rem + 0.9vw, 1.5rem);
+    line-height: 1.45;
+    max-width: 60ch;
+  }
+  .renovado__cierre strong {
+    color: var(--amarillo);
+  }
+
+  /* Principios */
   .principios {
     background: var(--papel-2);
-    border-block: 3px solid var(--tinta);
+    border-bottom: 3px solid var(--tinta);
   }
   .principios__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
     gap: 1.4rem;
   }
   .principio {
@@ -263,33 +355,78 @@ const hitos = [
   .principio h3 {
     color: var(--violeta);
     margin-bottom: 0.6rem;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+  }
+  .principios__cta {
+    margin-top: 2.2rem;
   }
 
-  .linea-politica {
+  /* Ejes */
+  .ejes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1.4rem;
+  }
+  .eje {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-top: 10px solid var(--violeta);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-dura-sm);
+    font-weight: 500;
+  }
+  .eje__icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
     background: var(--violeta);
     color: var(--papel);
-    padding-block: clamp(4rem, 8vw, 7rem);
+    border: 3px solid var(--tinta);
+    border-radius: var(--radio);
   }
-  .linea-politica__kicker {
+  .eje__icono svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Proyección */
+  .proyeccion {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+  .proyeccion__kicker {
     color: var(--amarillo);
   }
-  .linea-politica h2 {
+  .proyeccion h2 {
     color: var(--papel);
     margin: 0.6rem 0 2rem;
   }
-  .linea-politica__cols {
+  .proyeccion__cols {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 2rem;
-    margin-bottom: 2.4rem;
+    margin-bottom: 2rem;
   }
-  .linea-politica__cols p {
-    font-size: 1.12rem;
+  .proyeccion__cols p {
+    font-size: 1.1rem;
     line-height: 1.6;
     color: color-mix(in srgb, var(--papel) 92%, transparent);
   }
-  .linea-politica__cols strong {
+  .proyeccion__cols strong {
     color: var(--amarillo);
+  }
+  .proyeccion__lema {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
+    color: var(--amarillo);
+    margin-bottom: 1.8rem;
   }
 </style>

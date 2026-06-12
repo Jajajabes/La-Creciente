@@ -1,0 +1,301 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Base from "../../layouts/Base.astro";
+
+const docs = (await getCollection("documentos")).sort(
+  (a, b) => a.data.orden - b.data.orden || a.data.titulo.localeCompare(b.data.titulo)
+);
+
+const categorias = {
+  induccion: { texto: "Inducción", color: "var(--amarillo)", icono: "ph:door-open" },
+  feminismos: { texto: "Feminismos", color: "var(--magenta)", icono: "ph:gender-female" },
+  marxismo: { texto: "Teoría", color: "var(--rojo)", icono: "ph:book-open-text" },
+  universidad: { texto: "Universidad", color: "var(--cian)", icono: "ph:graduation-cap" },
+  organizacion: { texto: "Organización", color: "var(--violeta)", icono: "ph:users-three" },
+} as const;
+
+const filtros = [
+  { clave: "todas", texto: "Todas" },
+  ...Object.entries(categorias).map(([clave, c]) => ({ clave, texto: c.texto })),
+];
+
+const esExterno = (url?: string) => !!url && /^https?:\/\//.test(url);
+---
+
+<Base
+  titulo="Formación"
+  descripcion="Biblioteca de formación de La Creciente: inducción, feminismos, teoría marxista, universidad y organización."
+>
+  <section class="encab">
+    <div class="contenedor">
+      <p class="kicker encab__kicker">Escuela de formación</p>
+      <h1 class="encab__titulo">Biblioteca<br />de formación</h1>
+      <p class="encab__bajada">
+        La indignación no basta: para transformar hace falta estudiar. Reunimos
+        materiales propios y lecturas recomendadas para formar pueblo crítico y
+        organizado.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="filtros" role="group" aria-label="Filtrar por categoría">
+        {
+          filtros.map((f, i) => (
+            <button class:list={["filtro", { activo: i === 0 }]} data-filtro={f.clave} type="button">
+              {f.texto}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="docs__grid" id="lista-docs">
+        {
+          docs.map((d) => {
+            const cat = categorias[d.data.categoria];
+            const externo = esExterno(d.data.enlace);
+            return (
+              <article class="doc" data-cat={d.data.categoria} style={`--c:${cat.color}`}>
+                <div class="doc__top">
+                  <span class="doc__cat">
+                    <Icon name={cat.icono} /> {cat.texto}
+                  </span>
+                  <span class="doc__formato">{d.data.formato}</span>
+                </div>
+                <h3 class="doc__titulo">{d.data.titulo}</h3>
+                <p class="doc__resumen">{d.data.resumen}</p>
+                <div class="doc__pie">
+                  <span class="doc__origen">{d.data.origen}</span>
+                  {d.data.enlace ? (
+                    <a
+                      class="doc__btn"
+                      href={d.data.enlace}
+                      target={externo ? "_blank" : undefined}
+                      rel={externo ? "noopener noreferrer" : undefined}
+                    >
+                      {externo ? "Abrir" : "Descargar"}
+                      <Icon name={externo ? "ph:arrow-up-right" : "ph:download-simple"} />
+                    </a>
+                  ) : (
+                    <span class="doc__pronto">Próximamente</span>
+                  )}
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+      <p class="vacio" hidden>No hay materiales en esta categoría todavía.</p>
+
+      <p class="nota">
+        <Icon name="ph:info" class="ico" />
+        ¿Buscás un material que no está disponible? Escribinos a
+        <a href="/contacto/">contacto</a> y te lo compartimos.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const botones = document.querySelectorAll<HTMLButtonElement>(".filtro");
+  const items = document.querySelectorAll<HTMLElement>(".doc");
+  const vacio = document.querySelector<HTMLElement>(".vacio");
+  botones.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const f = btn.dataset.filtro;
+      botones.forEach((b) => b.classList.toggle("activo", b === btn));
+      let visibles = 0;
+      items.forEach((it) => {
+        const ok = f === "todas" || it.dataset.cat === f;
+        it.hidden = !ok;
+        if (ok) visibles++;
+      });
+      if (vacio) vacio.hidden = visibles !== 0;
+    });
+  });
+</script>
+
+<style>
+  .encab {
+    background: var(--violeta);
+    color: var(--papel);
+    padding-block: clamp(2.5rem, 5vw, 4.25rem);
+    border-bottom: 3px solid var(--tinta);
+  }
+  .encab__kicker {
+    color: var(--amarillo);
+    margin-bottom: 1.2rem;
+  }
+  .encab__titulo {
+    color: var(--papel);
+    margin-bottom: 1.5rem;
+  }
+  .encab__bajada {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    line-height: 1.45;
+    max-width: 48ch;
+    color: color-mix(in srgb, var(--papel) 90%, transparent);
+  }
+
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 2.4rem;
+  }
+  .filtro {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    padding: 0.5em 1.1em;
+    background: transparent;
+    color: var(--tinta);
+    border: 2px solid var(--tinta);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.14s ease, color 0.14s ease;
+  }
+  .filtro:hover {
+    background: var(--papel-3);
+  }
+  .filtro.activo {
+    background: var(--violeta);
+    color: var(--papel);
+  }
+
+  .docs__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 1.5rem;
+  }
+  .doc {
+    display: flex;
+    flex-direction: column;
+    background: var(--papel);
+    border: 3px solid var(--tinta);
+    border-left: 10px solid var(--c);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-dura-sm);
+    padding: 1.4rem 1.5rem 1.3rem;
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+  }
+  .doc:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--c);
+  }
+  .doc__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.8rem;
+  }
+  .doc__cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    font-family: var(--display);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c);
+    font-weight: 700;
+  }
+  .doc__cat svg {
+    width: 1.1em;
+    height: 1.1em;
+  }
+  .doc__formato {
+    color: var(--tenue);
+    font-weight: 600;
+  }
+  .doc__titulo {
+    font-size: clamp(1.15rem, 1rem + 0.7vw, 1.4rem);
+    line-height: 1.1;
+    color: var(--tinta);
+    margin-bottom: 0.6rem;
+  }
+  .doc__resumen {
+    color: color-mix(in srgb, var(--tinta) 82%, var(--papel));
+    font-size: 0.97rem;
+    flex: 1;
+    margin-bottom: 1.3rem;
+  }
+  .doc__pie {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 2px solid var(--papel-3);
+    padding-top: 0.9rem;
+  }
+  .doc__origen {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--tenue);
+  }
+  .doc__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--papel);
+    background: var(--violeta);
+    border: 2px solid var(--tinta);
+    border-radius: var(--radio);
+    padding: 0.4em 0.9em;
+    text-decoration: none;
+    transition: transform 0.12s ease;
+  }
+  .doc__btn svg {
+    width: 1.1em;
+    height: 1.1em;
+  }
+  .doc__btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sombra-dura-sm);
+  }
+  .doc__pronto {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--tenue);
+    border: 2px dashed var(--papel-3);
+    border-radius: 999px;
+    padding: 0.3em 0.8em;
+  }
+
+  .vacio {
+    text-align: center;
+    color: var(--tenue);
+    padding: 2rem 0;
+  }
+  .nota {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
+    margin-top: 2.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--papel-2);
+    border-left: 6px solid var(--amarillo);
+    border-radius: var(--radio);
+    font-size: 0.97rem;
+  }
+  .nota .ico {
+    color: var(--violeta);
+    flex-shrink: 0;
+  }
+  .nota a {
+    color: var(--violeta);
+    font-weight: 600;
+  }
+</style>
