@@ -8,7 +8,8 @@
 backend:
   name: github
   repo: Jajajabes/La-Creciente
-  branch: main
+  # Rama que publica Netlify. El panel guarda aquí y la web se actualiza sola.
+  branch: develop
 
 # Para probar el panel en tu computador con el sitio local:
 #   npx @sveltia/cms-proxy-server   (en otra terminal)

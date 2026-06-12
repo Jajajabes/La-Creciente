@@ -8,6 +8,11 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://lacreciente.netlify.app',
   integrations: [icon(), sitemap()],
+  // Precarga las páginas internas al pasar el mouse → navegación instantánea.
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   build: {
     inlineStylesheets: 'auto',
   },

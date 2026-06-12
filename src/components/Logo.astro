@@ -5,6 +5,7 @@ interface Props {
   alto?: number;
 }
 const { variante = "tinta", alto = 48 } = Astro.props;
+const ancho = Math.round(alto * (1000 / 392)); // proporción real del logo
 ---
 
 <img
@@ -13,7 +14,7 @@ const { variante = "tinta", alto = 48 } = Astro.props;
   height={alto}
   class:list={["logo", { "logo--blanco": variante === "papel" }]}
   style={`--alto:${alto}px`}
-  width="auto"
+  width={ancho}
   loading="eager"
   decoding="async"
 />
