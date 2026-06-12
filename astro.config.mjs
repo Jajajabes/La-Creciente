@@ -3,10 +3,10 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 
-// IMPORTANTE: cambien esta URL por el dominio real cuando lo tengan.
-// Se usa para el sitemap, las URLs canónicas y el feed RSS.
+// URL del sitio (sitemap, canónicas y RSS). Cambiar al dominio propio
+// cuando lo tengan (p. ej. https://lacreciente.org).
 export default defineConfig({
-  site: 'https://lacreciente.org',
+  site: 'https://lacreciente.netlify.app',
   integrations: [icon(), sitemap()],
   build: {
     inlineStylesheets: 'auto',
